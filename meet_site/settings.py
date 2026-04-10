@@ -25,8 +25,12 @@ SECRET_KEY = 'django-insecure-2ov@6_fh1j%9w=fwz)n0jw-+&gd1vm_y#y=h0u^h0z((c&##39
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
-
+ALLOWED_HOSTS = [
+    "unexpected-meeting-invite.onrender.com",
+]
+CSRF_TRUSTED_ORIGINS = [
+    "https://unexpected-meeting-invite.onrender.com",
+]
 
 # Application definition
 
@@ -144,3 +148,6 @@ STATICFILES_DIRS = [
 
 # Where collectstatic gathers files for production deployments (not used with runserver for STATICFILES_DIRS).
 STATIC_ROOT = BASE_DIR / 'staticfiles'
+# Whitenoise static hosting (required for Render)
+
+MIDDLEWARE.insert(1, "whitenoise.middleware.WhiteNoiseMiddleware")
