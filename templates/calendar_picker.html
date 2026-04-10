@@ -1,0 +1,177 @@
+{% extends "base.html" %}
+
+{% block title %}
+Choose meeting time
+{% endblock %}
+
+
+{% block extra_head %}
+
+<style>
+
+.picker-input {
+
+padding:14px 22px;
+border-radius:12px;
+border:1px solid #ff4d6d55;
+background:#161b22;
+color:white;
+font-size:16px;
+margin:12px;
+width:260px;
+text-align:center;
+transition:.3s ease;
+
+}
+
+.picker-input:hover {
+
+border:1px solid #ff4d6d;
+box-shadow:0 0 12px #ff4d6d44;
+
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator,
+input[type="time"]::-webkit-calendar-picker-indicator {
+
+filter: invert(1);
+cursor:pointer;
+
+}
+
+</style>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<section class="hero-section">
+
+<h1 class="hero-title">
+Choose a time that feels comfortable
+</h1>
+
+<p class="hero-text">
+Pick any date and time that works best for you.
+I'll adjust accordingly.
+</p>
+
+
+<form method="POST">
+
+{% csrf_token %}
+
+
+<input
+name="meeting_date"
+id="meeting-date"
+type="date"
+class="picker-input"
+required>
+
+
+<br>
+
+
+<input
+name="meeting_time"
+id="meeting-time"
+type="time"
+class="picker-input"
+required>
+
+
+<br><br>
+
+
+<button
+type="submit"
+class="cta-button"
+onclick="return createCalendarEvent()">
+
+Add meeting to calendar →
+
+</button>
+
+
+</form>
+
+</section>
+
+{% endblock %}
+
+
+
+{% block extra_js %}
+
+<script>
+
+function createCalendarEvent(){
+
+const date =
+document.getElementById("meeting-date").value
+
+const time =
+document.getElementById("meeting-time").value
+
+
+if(!date || !time){
+
+alert("Please select both date and time")
+
+return false
+
+}
+
+
+const formattedDate =
+date.replace(/-/g,"")
+
+const formattedTime =
+time.replace(":","")
+
+
+const start =
+formattedDate + "T" + formattedTime + "00"
+
+
+const hour =
+parseInt(time.split(":")[0]) + 1
+
+
+const end =
+formattedDate +
+"T" +
+hour.toString().padStart(2,"0") +
+time.split(":")[1] +
+"00"
+
+
+const calendarURL =
+"https://calendar.google.com/calendar/render?action=TEMPLATE"
++
+"&text=Lunch Meeting"
++
+"&location=Front of Mechanical Department"
++
+"&dates="
++
+start
++
+"/"
++
+end
+
+
+window.open(calendarURL,"_blank")
+
+
+return true
+
+}
+
+</script>
+
+{% endblock %}

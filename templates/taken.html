@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block site_header %}{% endblock %}
+{% block site_footer %}{% endblock %}
+
+{% block body_class %}landing-page{% endblock %}
+
+{% block extra_head %}
+
+<style>
+
+html, body {
+margin:0;
+padding:0;
+height:100%;
+background:#0d1117;
+font-family:'Poppins', sans-serif;
+}
+
+
+.hero-section {
+
+height:100vh;
+
+display:flex;
+
+flex-direction:column;
+
+justify-content:center;
+
+align-items:center;
+
+text-align:center;
+
+background:linear-gradient(
+120deg,
+#0d1117,
+#161b22,
+#0d1117
+);
+
+}
+
+
+.hero-title {
+
+font-size:64px;
+
+color:#ff4d6d;
+
+margin-bottom:20px;
+
+}
+
+
+.hero-text {
+
+font-size:22px;
+
+color:#e6edf3;
+
+max-width:650px;
+
+line-height:1.8;
+
+}
+
+</style>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<section class="hero-section">
+
+<h1 class="hero-title">
+
+Thank you for visiting
+
+</h1>
+
+
+<p class="hero-text">
+
+I really appreciate you taking the time to read this.
+
+<br><br>
+
+And I genuinely wish you and your partner a happy future ahead.
+
+</p>
+
+
+</section>
+
+{% endblock %}

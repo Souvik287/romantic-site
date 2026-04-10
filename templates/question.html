@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+
+{% block site_header %}{% endblock %}
+{% block site_footer %}{% endblock %}
+
+{% block title %}Before we continue{% endblock %}
+
+{% block body_class %}page-question{% endblock %}
+
+{% block extra_head %}
+
+<style>
+
+/* PAGE BACKGROUND */
+
+.page-question {
+
+    margin: 0;
+
+    min-height: 100vh;
+
+    display: flex;
+
+    justify-content: center;
+
+    align-items: center;
+
+    background: #0d1117;
+
+    font-family: 'Poppins', sans-serif;
+
+    color: #e6edf3;
+
+}
+
+
+/* CARD */
+
+.question-card {
+
+    background: rgba(22, 27, 34, 0.6);
+
+    backdrop-filter: blur(18px);
+
+    border: 1px solid rgba(255, 77, 109, 0.25);
+
+    padding: 60px 40px;
+
+    border-radius: 18px;
+
+    text-align: center;
+
+    max-width: 520px;
+
+    animation: fadeUp 1s ease;
+
+}
+
+
+/* TITLE */
+
+.question-title {
+
+    font-size: 2rem;
+
+    margin-bottom: 25px;
+
+    color: #ff4d6d;
+
+}
+
+
+/* TEXT */
+
+.question-text {
+
+    font-size: 1.2rem;
+
+    margin-bottom: 40px;
+
+    line-height: 1.7;
+
+}
+
+
+/* BUTTON CONTAINER */
+
+.question-buttons {
+
+    display: flex;
+
+    justify-content: center;
+
+    gap: 20px;
+
+}
+
+
+/* BUTTON STYLE */
+
+.question-btn {
+
+    padding: 12px 32px;
+
+    border-radius: 40px;
+
+    border: 1.5px solid #ff4d6d;
+
+    background: transparent;
+
+    color: #ff4d6d;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    transition: 0.3s ease;
+
+}
+
+
+/* BUTTON HOVER */
+
+.question-btn:hover {
+
+    background: #ff4d6d;
+
+    color: white;
+
+    box-shadow:
+
+        0 0 12px #ff4d6d,
+
+        0 0 30px #ff4d6d66;
+
+}
+
+
+/* ENTRY ANIMATION */
+
+@keyframes fadeUp {
+
+    from {
+
+        opacity: 0;
+
+        transform: translateY(40px);
+
+    }
+
+    to {
+
+        opacity: 1;
+
+        transform: translateY(0);
+
+    }
+
+}
+
+</style>
+
+{% endblock %}
+
+
+
+{% block content %}
+
+<div class="question-card">
+
+    <h2 class="question-title">
+        Before we continue…
+    </h2>
+
+
+    <p class="question-text">
+
+        I would like to ask you something first.
+
+        <br><br>
+
+        Do you have a boyfriend?
+
+    </p>
+
+
+    <div class="question-buttons">
+
+        <button class="question-btn" onclick="answerYes()">
+            Yes
+        </button>
+
+        <button class="question-btn" onclick="answerNo()">
+            No
+        </button>
+
+    </div>
+
+</div>
+
+{% endblock %}
+
+
+
+{% block extra_js %}
+
+<script>
+
+/* YES BUTTON → FULL PAGE LOAD */
+
+function answerYes() {
+
+    window.location.href = "/taken/";
+
+}
+
+
+/* NO BUTTON → FULL PAGE LOAD */
+
+function answerNo() {
+
+    window.location.href = "/not-taken/";
+
+}
+
+</script>
+
+{% endblock %}
