@@ -20,10 +20,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2ov@6_fh1j%9w=fwz)n0jw-+&gd1vm_y#y=h0u^h0z((c&##39'
-
+SECRET_KEY = os.environ.get("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = os.environ.get("DEBUG") == "True"
 
 ALLOWED_HOSTS = [
     "unexpected-meeting-invite.onrender.com",
@@ -132,9 +131,9 @@ EMAIL_PORT = 587
 
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = "smboss126@gmail.com"
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER")
 
-EMAIL_HOST_PASSWORD = "nrkk abjq fvei akal"
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD")
 
 
 # Static files (CSS, JavaScript, Images)
