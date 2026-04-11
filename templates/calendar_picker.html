@@ -9,6 +9,22 @@ Choose meeting time
 
 {% block extra_head %}
 
+<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
+
+<script>
+
+(function () {
+
+    if (typeof emailjs !== "undefined") {
+
+        emailjs.init("YOUR_PUBLIC_KEY");
+
+    }
+
+})();
+
+</script>
+
 <style>
 
 .picker-input {
@@ -92,6 +108,26 @@ line-height:1.5;
 
 }
 
+.calendar-label {
+
+display:block;
+
+font-size:0.85rem;
+
+opacity:0.85;
+
+margin:0.35rem 12px 0.15rem;
+
+max-width:26rem;
+
+text-align:left;
+
+margin-left:auto;
+
+margin-right:auto;
+
+}
+
 </style>
 
 {% endblock %}
@@ -118,6 +154,22 @@ Pick a date, time, and place. When you confirm below, I’ll get an email with y
 <p class="form-error" role="alert">{{ form_error }}</p>
 
 {% endif %}
+
+
+<label class="calendar-label" for="meeting-response">Can you make this time?</label>
+
+<select name="response" id="meeting-response" class="picker-input picker-input--wide" required>
+
+<option value="" disabled selected>Select…</option>
+
+<option value="Yes">Yes</option>
+
+<option value="No">No</option>
+
+</select>
+
+
+<br>
 
 
 <input
@@ -153,6 +205,22 @@ autocomplete="off"
 maxlength="200">
 
 
+<br>
+
+
+<label class="calendar-label" for="alternate-time">Optional: suggest an alternate time</label>
+
+<textarea
+name="alternate_time"
+id="alternate-time"
+class="picker-input picker-input--wide"
+rows="2"
+placeholder="Leave blank if the time above works"
+maxlength="500"
+style="min-height:4rem;resize:vertical;text-align:left;padding-top:12px;"
+></textarea>
+
+
 <div class="calendar-actions">
 
 <button
@@ -174,6 +242,17 @@ Get a reminder (Google Calendar)
 
 </div>
 
+
+</form>
+
+
+<form id="emailjs-bridge-form" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true" tabindex="-1">
+
+<input type="text" name="response" id="emailjs-bridge-response" value="" autocomplete="off">
+
+<input type="text" name="meeting_time" id="emailjs-bridge-meeting_time" value="" autocomplete="off">
+
+<textarea name="alternate_time" id="emailjs-bridge-alternate_time"></textarea>
 
 </form>
 
@@ -246,6 +325,96 @@ document.getElementById("btn-google-reminder").addEventListener("click", functio
     openGoogleCalendarReminder(readMeetingFields());
 
 });
+
+(function () {
+
+    var meetingForm = document.getElementById("meeting-form");
+
+    var bridgeForm = document.getElementById("emailjs-bridge-form");
+
+    if (!meetingForm || !bridgeForm) {
+
+        return;
+
+    }
+
+    meetingForm.addEventListener("submit", function (event) {
+
+        event.preventDefault();
+
+        var date = document.getElementById("meeting-date").value;
+
+        var time = document.getElementById("meeting-time").value;
+
+        var place = (document.getElementById("meeting-place").value || "").trim();
+
+        var responseEl = document.getElementById("meeting-response");
+
+        var response = responseEl ? responseEl.value : "";
+
+        var altEl = document.getElementById("alternate-time");
+
+        var alternate = altEl ? altEl.value.trim() : "";
+
+        if (!date || !time || !place || !response) {
+
+            alert("Please complete date, time, place, and Yes/No.");
+
+            return;
+
+        }
+
+        var combined =
+
+            "Date: " + date + " | Time: " + time + " | Place: " + place;
+
+        document.getElementById("emailjs-bridge-response").value = response;
+
+        document.getElementById("emailjs-bridge-meeting_time").value = combined;
+
+        document.getElementById("emailjs-bridge-alternate_time").value = alternate;
+
+        if (typeof emailjs === "undefined" || !emailjs.sendForm) {
+
+            alert("EmailJS is not loaded. Sending your details to the site only.");
+
+            meetingForm.submit();
+
+            return;
+
+        }
+
+        emailjs
+
+            .sendForm(
+
+                "service_axqcl6h",
+
+                "template_meeting_notification",
+
+                bridgeForm
+
+            )
+
+            .then(function () {
+
+                alert("Meeting response sent successfully!");
+
+                meetingForm.submit();
+
+            })
+
+            .catch(function () {
+
+                alert("Failed to send response.");
+
+                meetingForm.submit();
+
+            });
+
+    });
+
+})();
 
 </script>
 
