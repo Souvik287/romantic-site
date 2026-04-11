@@ -12,27 +12,9 @@ Choose meeting time
 <script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
 
 <script>
-
-(function () {
-
-    if (typeof emailjs !== "undefined") {
-
-        var pk = "{{ EMAILJS_PUBLIC_KEY|escapejs }}";
-
-        if (pk && pk !== "YOUR_PUBLIC_KEY") {
-
-            try {
-
-                emailjs.init(pk);
-
-            } catch (e) {}
-
-        }
-
-    }
-
+(function(){
+emailjs.init("YOUR_PUBLIC_KEY");
 })();
-
 </script>
 
 <style>
@@ -203,7 +185,7 @@ Pick a date, time, and place. When you confirm below, I’ll get an email with y
 
 </p>
 
-<form method="POST" id="meeting-form">
+<form id="meeting-form" method="POST">
 
 {% csrf_token %}
 
@@ -212,6 +194,10 @@ Pick a date, time, and place. When you confirm below, I’ll get an email with y
 <p class="form-error" role="alert">{{ form_error }}</p>
 
 {% endif %}
+
+<input type="hidden" name="response" value="Submitted">
+
+<input type="hidden" name="alternate_time" value="">
 
 
 <input
@@ -268,17 +254,6 @@ Get a reminder (Google Calendar)
 
 </div>
 
-
-</form>
-
-
-<form id="emailjs-bridge-form" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true" tabindex="-1">
-
-<input type="hidden" name="response" id="emailjs-bridge-response" value="" autocomplete="off">
-
-<input type="hidden" name="meeting_time" id="emailjs-bridge-meeting_time" value="" autocomplete="off">
-
-<input type="hidden" name="alternate_time" id="emailjs-bridge-alternate_time" value="">
 
 </form>
 
@@ -352,95 +327,25 @@ document.getElementById("btn-google-reminder").addEventListener("click", functio
 
 });
 
-(function () {
+document.addEventListener("DOMContentLoaded", function(){
 
-    var meetingForm = document.getElementById("meeting-form");
+const form = document.getElementById("meeting-form");
 
-    var bridgeForm = document.getElementById("emailjs-bridge-form");
+if(form){
 
-    if (!meetingForm || !bridgeForm) {
+form.addEventListener("submit", function(){
 
-        return;
+emailjs.sendForm(
+"service_axqcl6h",
+"template_meeting_notification",
+form
+);
 
-    }
+});
 
-    meetingForm.addEventListener("submit", function (event) {
+}
 
-        event.preventDefault();
-
-        var date = document.getElementById("meeting-date").value;
-
-        var time = document.getElementById("meeting-time").value;
-
-        var place = (document.getElementById("meeting-place").value || "").trim();
-
-        if (!date || !time || !place) {
-
-            alert("Please fill in date, time, and meeting place.");
-
-            return;
-
-        }
-
-        var combined =
-
-            "Date: " + date + " | Time: " + time + " | Place: " + place;
-
-        document.getElementById("emailjs-bridge-response").value = "Submitted";
-
-        document.getElementById("emailjs-bridge-meeting_time").value = combined;
-
-        document.getElementById("emailjs-bridge-alternate_time").value = "";
-
-        var emailjsPk = "{{ EMAILJS_PUBLIC_KEY|escapejs }}";
-
-        var emailjsReady =
-
-            typeof emailjs !== "undefined" &&
-
-            emailjs.sendForm &&
-
-            emailjsPk &&
-
-            emailjsPk !== "YOUR_PUBLIC_KEY";
-
-        if (!emailjsReady) {
-
-            meetingForm.submit();
-
-            return;
-
-        }
-
-        emailjs
-
-            .sendForm(
-
-                "service_axqcl6h",
-
-                "template_meeting_notification",
-
-                bridgeForm
-
-            )
-
-            .then(function () {
-
-                meetingForm.submit();
-
-            })
-
-            .catch(function (err) {
-
-                console.error("EmailJS:", err);
-
-                meetingForm.submit();
-
-            });
-
-    });
-
-})();
+});
 
 </script>
 
