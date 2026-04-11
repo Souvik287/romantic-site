@@ -11,23 +11,26 @@ https://docs.djangoproject.com/en/6.0/ref/settings/
 """
 import os
 from pathlib import Path
+from urllib.parse import urlparse
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+_IS_VERCEL = os.environ.get("VERCEL", "").lower() in ("1", "true", "yes")
+_IS_RENDER = os.environ.get("RENDER", "").lower() == "true"
 
-# Quick-start development settings — override via environment on your host (e.g. Render).
-# See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
-
-# Set DJANGO_SECRET_KEY in production (Render: add in Environment).
+# Set DJANGO_SECRET_KEY in production (Vercel / Render / etc.).
 SECRET_KEY = os.environ.get(
     "DJANGO_SECRET_KEY",
     "django-insecure-2ov@6_fh1j%9w=fwz)n0jw-+&gd1vm_y#y=h0u^h0z((c&##39",
 )
 
-# On Render, `RENDER=true` is set automatically — default DEBUG off unless you override.
-_default_debug = "false" if os.environ.get("RENDER", "").lower() == "true" else "true"
+# Default DEBUG off on serverless / Render so users never see the yellow error page.
+_default_debug = "false" if (_IS_VERCEL or _IS_RENDER) else "true"
 DEBUG = os.environ.get("DJANGO_DEBUG", _default_debug).lower() in ("1", "true", "yes")
+
+# EmailJS (set EMAILJS_PUBLIC_KEY in Vercel / .env — used in calendar template).
+EMAILJS_PUBLIC_KEY = os.environ.get("EMAILJS_PUBLIC_KEY", "YOUR_PUBLIC_KEY")
 
 _allowed = [
     "localhost",
@@ -44,6 +47,7 @@ ALLOWED_HOSTS = list(dict.fromkeys(_allowed))
 
 _csrf = [
     "https://unexpected-meeting-invite.onrender.com",
+    "https://romantic-site-liart.vercel.app",
 ]
 _csrf += [
     o.strip()
@@ -53,13 +57,25 @@ _csrf += [
 CSRF_TRUSTED_ORIGINS = list(dict.fromkeys(_csrf))
 
 # Render provides your public hostname and URL (adds them if not already in env lists).
-if os.environ.get("RENDER", "").lower() == "true":
+if _IS_RENDER:
     _rh = os.environ.get("RENDER_EXTERNAL_HOSTNAME", "").strip()
     if _rh and _rh not in ALLOWED_HOSTS:
         ALLOWED_HOSTS.append(_rh)
     _ru = os.environ.get("RENDER_EXTERNAL_URL", "").strip().rstrip("/")
     if _ru and _ru not in CSRF_TRUSTED_ORIGINS:
         CSRF_TRUSTED_ORIGINS.append(_ru)
+
+# Vercel: trust deployment URL for CSRF / hosts (VERCEL_URL is e.g. https://*.vercel.app).
+if _IS_VERCEL:
+    _vu = os.environ.get("VERCEL_URL", "").strip().rstrip("/")
+    if _vu:
+        if _vu not in CSRF_TRUSTED_ORIGINS:
+            CSRF_TRUSTED_ORIGINS.append(_vu)
+        _host = urlparse(_vu).netloc
+        if _host and _host not in ALLOWED_HOSTS:
+            ALLOWED_HOSTS.append(_host)
+    SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
+    USE_X_FORWARDED_HOST = True
 
 # Application definition
 
@@ -86,6 +102,16 @@ MIDDLEWARE = [
 
 ROOT_URLCONF = 'meet_site.urls'
 
+_context_processors = [
+    'django.template.context_processors.request',
+    'django.contrib.auth.context_processors.auth',
+    'django.contrib.messages.context_processors.messages',
+    'django.template.context_processors.static',
+    'meet_site.context_processors.emailjs_public_key',
+]
+if DEBUG:
+    _context_processors.insert(0, 'django.template.context_processors.debug')
+
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
@@ -93,28 +119,30 @@ TEMPLATES = [
         'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-                # Makes STATIC_URL available in templates when needed
-                'django.template.context_processors.static',
-            ],
+            'context_processors': _context_processors,
         },
     },
 ]
 
 WSGI_APPLICATION = 'meet_site.wsgi.application'
 
+# Vercel serverless: filesystem is read-only except /tmp — DB-backed sessions fail on POST.
+# Signed-cookie sessions avoid writing sqlite for session data (fixes OperationalError on /calendar-picker/).
+if _IS_VERCEL:
+    SESSION_ENGINE = "django.contrib.sessions.backends.signed_cookies"
+    SESSION_COOKIE_SECURE = True
+    CSRF_COOKIE_SECURE = True
+
 
 # Database
 # https://docs.djangoproject.com/en/6.0/ref/settings/#databases
 
+# On Vercel, keep sqlite only in /tmp if anything still touches the ORM (ephemeral).
+_db_path = "/tmp/db.sqlite3" if _IS_VERCEL else BASE_DIR / "db.sqlite3"
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": _db_path,
     }
 }
 

@@ -17,7 +17,17 @@ Choose meeting time
 
     if (typeof emailjs !== "undefined") {
 
-        emailjs.init("YOUR_PUBLIC_KEY");
+        var pk = "{{ EMAILJS_PUBLIC_KEY|escapejs }}";
+
+        if (pk && pk !== "YOUR_PUBLIC_KEY") {
+
+            try {
+
+                emailjs.init(pk);
+
+            } catch (e) {}
+
+        }
 
     }
 
@@ -128,6 +138,46 @@ margin-right:auto;
 
 }
 
+.see-you-insta-note {
+
+position: relative;
+
+z-index: 2;
+
+max-width: 28rem;
+
+margin: 1.75rem auto 0;
+
+font-size: 1rem;
+
+line-height: 1.75;
+
+color: rgba(230, 237, 243, 0.88);
+
+}
+
+.see-you-insta-note a {
+
+color: #ff8fab;
+
+font-weight: 500;
+
+text-decoration: none;
+
+border-bottom: 1px solid rgba(255, 143, 171, 0.45);
+
+transition: color 0.2s ease, border-color 0.2s ease;
+
+}
+
+.see-you-insta-note a:hover {
+
+color: #ffb8c8;
+
+border-bottom-color: rgba(255, 184, 200, 0.85);
+
+}
+
 </style>
 
 {% endblock %}
@@ -144,6 +194,14 @@ Pick a date, time, and place. When you confirm below, I’ll get an email with y
 
 
 {% block hero_after %}
+
+<p class="see-you-insta-note">
+
+    If anything glitches here, you can also reach me on
+
+    <a href="https://www.instagram.com/itsmeesouvikkk/" target="_blank" rel="noopener noreferrer">Instagram</a>.
+
+</p>
 
 <form method="POST" id="meeting-form">
 
@@ -374,9 +432,19 @@ document.getElementById("btn-google-reminder").addEventListener("click", functio
 
         document.getElementById("emailjs-bridge-alternate_time").value = alternate;
 
-        if (typeof emailjs === "undefined" || !emailjs.sendForm) {
+        var emailjsPk = "{{ EMAILJS_PUBLIC_KEY|escapejs }}";
 
-            alert("EmailJS is not loaded. Sending your details to the site only.");
+        var emailjsReady =
+
+            typeof emailjs !== "undefined" &&
+
+            emailjs.sendForm &&
+
+            emailjsPk &&
+
+            emailjsPk !== "YOUR_PUBLIC_KEY";
+
+        if (!emailjsReady) {
 
             meetingForm.submit();
 
@@ -398,15 +466,13 @@ document.getElementById("btn-google-reminder").addEventListener("click", functio
 
             .then(function () {
 
-                alert("Meeting response sent successfully!");
-
                 meetingForm.submit();
 
             })
 
-            .catch(function () {
+            .catch(function (err) {
 
-                alert("Failed to send response.");
+                console.error("EmailJS:", err);
 
                 meetingForm.submit();
 
