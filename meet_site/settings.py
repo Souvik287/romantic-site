@@ -33,6 +33,7 @@ _allowed = [
     "localhost",
     "127.0.0.1",
     "unexpected-meeting-invite.onrender.com",
+    'romantic-site-liart.vercel.app',
 ]
 _allowed += [
     h.strip()
