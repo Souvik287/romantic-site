@@ -91,8 +91,23 @@ I really appreciate you taking the time to read this.
 And I genuinely wish you and your partner a happy future ahead.
 
 </p>
+<script>
 
-
+    /*
+    Stop popup music player
+    */
+    
+    window.onload = function(){
+    
+    if(window.opener && !window.opener.musicWindow?.closed){
+    
+    window.opener.musicWindow.postMessage("STOP_MUSIC","*");
+    
+    }
+    
+    };
+    
+    </script>
 </section>
 
 {% endblock %}

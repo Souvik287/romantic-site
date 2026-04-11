@@ -62,3 +62,5 @@ def calendar_picker(request):
         return render(request, "see_you_soon.html")
 
     return render(request, "calendar_picker.html")
+def music_player(request):
+    return render(request, "music_player.html")

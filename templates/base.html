@@ -168,54 +168,51 @@ transform:translateY(0);
 {% endblock %}
 
 
+<!-- 🎵 Persistent Background Music Controller -->
 
-<!-- BACKGROUND MUSIC PLAYER -->
-
-<audio id="bgMusic" loop preload="auto">
-
-<source src="{% static 'music/Khat.mp3' %}" type="audio/mpeg">
-
-</audio>
-
-
-
-<script>
-
-/*
-Reliable background music starter
-Works on click / scroll / keyboard
-Prevents autoplay blocking
-*/
-
-function startMusicOnce(){
-
-const music = document.getElementById("bgMusic");
-
-if(music.paused){
-
-music.volume = 0.25;
-
-music.play().catch(()=>{});
-
-}
-
-}
-
-
-document.addEventListener("click", startMusicOnce, { once:true });
-
-document.addEventListener("scroll", startMusicOnce, { once:true });
-
-document.addEventListener("keydown", startMusicOnce, { once:true });
-
-</script>
-
+<iframe
+src="{% url 'music_player' %}"
+id="musicFrame"
+style="display:none;"
+allow="autoplay">
+</iframe>
 
 
 {% block extra_js %}
 {% endblock %}
 
+<script>
 
+    /*
+    Persistent popup music controller
+    */
+    
+    function startMusicPlayer(){
+    
+    if(!window.musicWindow || window.musicWindow.closed){
+    
+    window.musicWindow = window.open(
+    
+    "/music-player/",
+    
+    "musicWindow",
+    
+    "width=200,height=100,left=0,top=0"
+    
+    );
+    
+    }
+    
+    }
+    
+    
+    /*
+    Start music after FIRST click
+    */
+    
+    document.addEventListener("click", startMusicPlayer, { once:true });
+    
+    </script>
 </body>
 
 </html>

@@ -17,5 +17,8 @@ urlpatterns = [
     path('adjust-meeting/', views.adjust_meeting, name='adjust_meeting'),
 
     path('calendar-picker/', views.calendar_picker, name='calendar_picker'),
+    
+  path("music-player/", views.music_player, name="music_player"),
+
 
 ]
