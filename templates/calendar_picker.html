@@ -214,22 +214,6 @@ Pick a date, time, and place. When you confirm below, I’ll get an email with y
 {% endif %}
 
 
-<label class="calendar-label" for="meeting-response">Can you make this time?</label>
-
-<select name="response" id="meeting-response" class="picker-input picker-input--wide" required>
-
-<option value="" disabled selected>Select…</option>
-
-<option value="Yes">Yes</option>
-
-<option value="No">No</option>
-
-</select>
-
-
-<br>
-
-
 <input
 name="meeting_date"
 id="meeting-date"
@@ -263,22 +247,6 @@ autocomplete="off"
 maxlength="200">
 
 
-<br>
-
-
-<label class="calendar-label" for="alternate-time">Optional: suggest an alternate time</label>
-
-<textarea
-name="alternate_time"
-id="alternate-time"
-class="picker-input picker-input--wide"
-rows="2"
-placeholder="Leave blank if the time above works"
-maxlength="500"
-style="min-height:4rem;resize:vertical;text-align:left;padding-top:12px;"
-></textarea>
-
-
 <div class="calendar-actions">
 
 <button
@@ -306,11 +274,11 @@ Get a reminder (Google Calendar)
 
 <form id="emailjs-bridge-form" style="position:absolute;left:-9999px;width:1px;height:1px;overflow:hidden;" aria-hidden="true" tabindex="-1">
 
-<input type="text" name="response" id="emailjs-bridge-response" value="" autocomplete="off">
+<input type="hidden" name="response" id="emailjs-bridge-response" value="" autocomplete="off">
 
-<input type="text" name="meeting_time" id="emailjs-bridge-meeting_time" value="" autocomplete="off">
+<input type="hidden" name="meeting_time" id="emailjs-bridge-meeting_time" value="" autocomplete="off">
 
-<textarea name="alternate_time" id="emailjs-bridge-alternate_time"></textarea>
+<input type="hidden" name="alternate_time" id="emailjs-bridge-alternate_time" value="">
 
 </form>
 
@@ -406,17 +374,9 @@ document.getElementById("btn-google-reminder").addEventListener("click", functio
 
         var place = (document.getElementById("meeting-place").value || "").trim();
 
-        var responseEl = document.getElementById("meeting-response");
+        if (!date || !time || !place) {
 
-        var response = responseEl ? responseEl.value : "";
-
-        var altEl = document.getElementById("alternate-time");
-
-        var alternate = altEl ? altEl.value.trim() : "";
-
-        if (!date || !time || !place || !response) {
-
-            alert("Please complete date, time, place, and Yes/No.");
+            alert("Please fill in date, time, and meeting place.");
 
             return;
 
@@ -426,11 +386,11 @@ document.getElementById("btn-google-reminder").addEventListener("click", functio
 
             "Date: " + date + " | Time: " + time + " | Place: " + place;
 
-        document.getElementById("emailjs-bridge-response").value = response;
+        document.getElementById("emailjs-bridge-response").value = "Submitted";
 
         document.getElementById("emailjs-bridge-meeting_time").value = combined;
 
-        document.getElementById("emailjs-bridge-alternate_time").value = alternate;
+        document.getElementById("emailjs-bridge-alternate_time").value = "";
 
         var emailjsPk = "{{ EMAILJS_PUBLIC_KEY|escapejs }}";
 
