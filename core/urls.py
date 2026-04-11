@@ -10,15 +10,18 @@ urlpatterns = [
 
     path('taken/', views.taken, name='taken'),
 
+    path('meetup-interest/', views.meetup_interest, name='meetup_interest'),
+
     path('not-taken/', views.not_taken, name='not_taken'),
+
+    path('respectful-goodbye/', views.respectful_goodbye, name='respectful_goodbye'),
 
     path('see-you-soon/', views.see_you_soon, name='see_you_soon'),
 
     path('adjust-meeting/', views.adjust_meeting, name='adjust_meeting'),
 
     path('calendar-picker/', views.calendar_picker, name='calendar_picker'),
-    
-  path("music-player/", views.music_player, name="music_player"),
 
+    path('meeting-confirmed/', views.meeting_confirmed, name='meeting_confirmed'),
 
 ]

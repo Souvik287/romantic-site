@@ -16,22 +16,49 @@ from pathlib import Path
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-# Quick-start development settings - unsuitable for production
+# Quick-start development settings — override via environment on your host (e.g. Render).
 # See https://docs.djangoproject.com/en/6.0/howto/deployment/checklist/
 
-# SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-2ov@6_fh1j%9w=fwz)n0jw-+&gd1vm_y#y=h0u^h0z((c&##39'
+# Set DJANGO_SECRET_KEY in production (Render: add in Environment).
+SECRET_KEY = os.environ.get(
+    "DJANGO_SECRET_KEY",
+    "django-insecure-2ov@6_fh1j%9w=fwz)n0jw-+&gd1vm_y#y=h0u^h0z((c&##39",
+)
 
-# SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# On Render, `RENDER=true` is set automatically — default DEBUG off unless you override.
+_default_debug = "false" if os.environ.get("RENDER", "").lower() == "true" else "true"
+DEBUG = os.environ.get("DJANGO_DEBUG", _default_debug).lower() in ("1", "true", "yes")
 
-ALLOWED_HOSTS = [
+_allowed = [
+    "localhost",
+    "127.0.0.1",
     "unexpected-meeting-invite.onrender.com",
-    "*",
 ]
-CSRF_TRUSTED_ORIGINS = [
+_allowed += [
+    h.strip()
+    for h in os.environ.get("DJANGO_ALLOWED_HOSTS", "").split(",")
+    if h.strip()
+]
+ALLOWED_HOSTS = list(dict.fromkeys(_allowed))
+
+_csrf = [
     "https://unexpected-meeting-invite.onrender.com",
 ]
+_csrf += [
+    o.strip()
+    for o in os.environ.get("DJANGO_CSRF_TRUSTED_ORIGINS", "").split(",")
+    if o.strip()
+]
+CSRF_TRUSTED_ORIGINS = list(dict.fromkeys(_csrf))
+
+# Render provides your public hostname and URL (adds them if not already in env lists).
+if os.environ.get("RENDER", "").lower() == "true":
+    _rh = os.environ.get("RENDER_EXTERNAL_HOSTNAME", "").strip()
+    if _rh and _rh not in ALLOWED_HOSTS:
+        ALLOWED_HOSTS.append(_rh)
+    _ru = os.environ.get("RENDER_EXTERNAL_URL", "").strip().rstrip("/")
+    if _ru and _ru not in CSRF_TRUSTED_ORIGINS:
+        CSRF_TRUSTED_ORIGINS.append(_ru)
 
 # Application definition
 
@@ -130,9 +157,10 @@ EMAIL_PORT = 587
 
 EMAIL_USE_TLS = True
 
-EMAIL_HOST_USER = "smboss126@gmail.com"
+EMAIL_HOST_USER = os.environ.get("EMAIL_HOST_USER", "smboss126@gmail.com")
 
-EMAIL_HOST_PASSWORD = "nrkk abjq fvei akal"
+# Never commit real passwords. Set EMAIL_HOST_PASSWORD locally or in Render env.
+EMAIL_HOST_PASSWORD = os.environ.get("EMAIL_HOST_PASSWORD", "")
 
 
 # Static files (CSS, JavaScript, Images)

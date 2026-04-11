@@ -1,36 +1,32 @@
-{% extends "base.html" %}
+{% extends "simple_hero_base.html" %}
 
-{% block site_header %}{% endblock %}
-{% block site_footer %}{% endblock %}
+{% block hero_heading %}
 
-{% block body_class %}landing-page{% endblock %}
+I’d love to meet you
 
-{% block content %}
-
-<section class="hero-section">
-
-<h1 class="hero-title">
-
-I'd be happy to meet you
-
-</h1>
+{% endblock %}
 
 
-<p class="hero-text">
+{% block hero_body %}
 
-I was thinking it would be nice to meet for lunch  
-in front of the Mechanical Department.
+It would be really wonderful to meet you <strong>in person</strong>.
 
 <br><br>
 
-Does that sound okay to you?
+I already mentioned the place I had in mind in my letter—would you be comfortable meeting there? If something else feels better for you, you can say so in the next step.
 
-</p>
+<br><br>
 
+What feels right for you?
+
+{% endblock %}
+
+
+{% block hero_after %}
 
 <div style="margin-top:40px;">
 
-<a href="/see-you-soon/" class="cta-button">
+<a href="{% url 'see_you_soon' %}" class="cta-button">
 
 Yes, that works for me
 
@@ -40,7 +36,7 @@ Yes, that works for me
 <br><br>
 
 
-<a href="/adjust-meeting/" class="cta-button">
+<a href="{% url 'adjust_meeting' %}" class="cta-button">
 
 Maybe we can adjust the time or place
 
@@ -48,7 +44,5 @@ Maybe we can adjust the time or place
 
 </div>
 
-
-</section>
 
 {% endblock %}

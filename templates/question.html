@@ -1,8 +1,5 @@
 {% extends "base.html" %}
 
-{% block site_header %}{% endblock %}
-{% block site_footer %}{% endblock %}
-
 {% block title %}Before we continue{% endblock %}
 
 {% block body_class %}page-question{% endblock %}
@@ -11,19 +8,11 @@
 
 <style>
 
-/* PAGE BACKGROUND */
-
-.page-question {
+body.page-question {
 
     margin: 0;
 
     min-height: 100vh;
-
-    display: flex;
-
-    justify-content: center;
-
-    align-items: center;
 
     background: #0d1117;
 
@@ -33,8 +22,23 @@
 
 }
 
+.question-layout {
 
-/* CARD */
+    min-height: 100vh;
+
+    width: 100%;
+
+    display: flex;
+
+    align-items: center;
+
+    justify-content: center;
+
+    padding: 1.5rem;
+
+    box-sizing: border-box;
+
+}
 
 .question-card {
 
@@ -52,12 +56,11 @@
 
     max-width: 520px;
 
+    width: 100%;
+
     animation: fadeUp 1s ease;
 
 }
-
-
-/* TITLE */
 
 .question-title {
 
@@ -69,9 +72,6 @@
 
 }
 
-
-/* TEXT */
-
 .question-text {
 
     font-size: 1.2rem;
@@ -82,9 +82,6 @@
 
 }
 
-
-/* BUTTON CONTAINER */
-
 .question-buttons {
 
     display: flex;
@@ -93,10 +90,9 @@
 
     gap: 20px;
 
+    flex-wrap: wrap;
+
 }
-
-
-/* BUTTON STYLE */
 
 .question-btn {
 
@@ -116,12 +112,28 @@
 
     transition: 0.3s ease;
 
+    text-decoration: none;
+
+    display: inline-block;
+
+    box-sizing: border-box;
+
+    font-family: inherit;
+
+    text-align: center;
+
 }
 
+button.question-btn {
 
-/* BUTTON HOVER */
+    -webkit-appearance: none;
 
-.question-btn:hover {
+    appearance: none;
+
+}
+
+a.question-btn:hover,
+button.question-btn:hover {
 
     background: #ff4d6d;
 
@@ -135,8 +147,11 @@
 
 }
 
+.question-step[hidden] {
 
-/* ENTRY ANIMATION */
+    display: none !important;
+
+}
 
 @keyframes fadeUp {
 
@@ -162,66 +177,91 @@
 
 {% endblock %}
 
-
-
 {% block content %}
 
-<div class="question-card">
+<main class="question-layout" role="main">
 
-    <h2 class="question-title">
-        Before we continue…
-    </h2>
+    <div id="step-boyfriend" class="question-card question-step">
 
+        <h2 class="question-title">
+            Before we continue…
+        </h2>
 
-    <p class="question-text">
+        <p class="question-text">
 
-        I would like to ask you something first.
+            I would like to ask you something first.
 
-        <br><br>
+            <br><br>
 
-        Do you have a boyfriend?
+            Do you have a boyfriend?
 
-    </p>
+        </p>
 
+        <div class="question-buttons">
 
-    <div class="question-buttons">
+            <a href="{% url 'taken' %}" class="question-btn">Yes</a>
 
-        <button class="question-btn" onclick="answerYes()">
-            Yes
-        </button>
+            <button type="button" class="question-btn" id="btn-no-boyfriend">
+                No
+            </button>
 
-        <button class="question-btn" onclick="answerNo()">
-            No
-        </button>
+        </div>
 
     </div>
 
-</div>
+    <div id="step-meetup" class="question-card question-step" hidden>
+
+        <h2 class="question-title">
+            One more thing
+        </h2>
+
+        <p class="question-text">
+            Are you interested in the meetup?
+        </p>
+
+        <div class="question-buttons">
+
+            <a href="{% url 'not_taken' %}" class="question-btn">Yes</a>
+
+            <a href="{% url 'respectful_goodbye' %}" class="question-btn">No</a>
+
+        </div>
+
+    </div>
+
+</main>
 
 {% endblock %}
-
-
 
 {% block extra_js %}
 
 <script>
 
-/* YES BUTTON → FULL PAGE LOAD */
+(function () {
 
-function answerYes() {
+    var bf = document.getElementById("step-boyfriend");
 
-    window.location.href = "/taken/";
+    var mu = document.getElementById("step-meetup");
 
-}
+    var btn = document.getElementById("btn-no-boyfriend");
 
+    if (!bf || !mu || !btn) {
 
-/* NO BUTTON → FULL PAGE LOAD */
+        return;
 
-function answerNo() {
+    }
 
-    window.location.href = "/not-taken/";
+    btn.addEventListener("click", function () {
 
-}
+        bf.setAttribute("hidden", "hidden");
+
+        mu.removeAttribute("hidden");
+
+        mu.scrollIntoView({ behavior: "smooth", block: "center" });
+
+    });
+
+})();
 
 </script>
 

@@ -1,29 +1,22 @@
-{% extends "base.html" %}
+{% extends "simple_hero_base.html" %}
 
-{% block site_header %}{% endblock %}
-{% block site_footer %}{% endblock %}
-
-{% block body_class %}landing-page{% endblock %}
-
-{% block content %}
-
-<section class="hero-section">
-
-<h1 class="hero-title">
+{% block hero_heading %}
 
 We can adjust it
 
-</h1>
+{% endblock %}
 
 
-<p class="hero-text">
+{% block hero_body %}
 
 If another time or place feels more comfortable for you,
 
 you can choose what works best below.
 
-</p>
+{% endblock %}
 
+
+{% block hero_after %}
 
 <a href="/calendar-picker/" class="cta-button">
 
@@ -31,7 +24,5 @@ Choose date and time →
 
 </a>
 
-
-</section>
 
 {% endblock %}

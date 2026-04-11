@@ -1,9 +1,4 @@
-{% extends "base.html" %}
-
-{% block site_header %}{% endblock %}
-{% block site_footer %}{% endblock %}
-
-{% block body_class %}landing-page{% endblock %}
+{% extends "simple_hero_base.html" %}
 
 {% block extra_head %}
 
@@ -71,43 +66,19 @@ line-height:1.8;
 
 
 
-{% block content %}
-
-<section class="hero-section">
-
-<h1 class="hero-title">
+{% block hero_heading %}
 
 Thank you for visiting
 
-</h1>
+{% endblock %}
 
 
-<p class="hero-text">
+{% block hero_body %}
 
 I really appreciate you taking the time to read this.
 
 <br><br>
 
 And I genuinely wish you and your partner a happy future ahead.
-
-</p>
-<script>
-
-    /*
-    Stop popup music player
-    */
-    
-    window.onload = function(){
-    
-    if(window.opener && !window.opener.musicWindow?.closed){
-    
-    window.opener.musicWindow.postMessage("STOP_MUSIC","*");
-    
-    }
-    
-    };
-    
-    </script>
-</section>
 
 {% endblock %}

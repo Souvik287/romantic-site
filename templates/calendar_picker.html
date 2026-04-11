@@ -1,4 +1,6 @@
-{% extends "base.html" %}
+{% extends "simple_hero_base.html" %}
+
+{% block body_class %}{% endblock %}
 
 {% block title %}
 Choose meeting time
@@ -19,8 +21,15 @@ color:white;
 font-size:16px;
 margin:12px;
 width:260px;
+max-width:90vw;
 text-align:center;
 transition:.3s ease;
+
+}
+
+.picker-input--wide {
+
+width:min(420px,90vw);
 
 }
 
@@ -39,29 +48,76 @@ cursor:pointer;
 
 }
 
+.form-error {
+
+color:#ff8fa3;
+
+font-size:0.95rem;
+
+margin:0 12px 12px;
+
+max-width:420px;
+
+margin-left:auto;
+
+margin-right:auto;
+
+}
+
+.calendar-actions {
+
+margin-top:1.5rem;
+
+display:flex;
+
+flex-direction:column;
+
+align-items:center;
+
+gap:1rem;
+
+}
+
+.calendar-hint {
+
+font-size:0.9rem;
+
+opacity:0.8;
+
+max-width:26rem;
+
+margin:0;
+
+line-height:1.5;
+
+}
+
 </style>
 
 {% endblock %}
 
 
 
-{% block content %}
-
-<section class="hero-section">
-
-<h1 class="hero-title">
+{% block hero_heading %}
 Choose a time that feels comfortable
-</h1>
+{% endblock %}
 
-<p class="hero-text">
-Pick any date and time that works best for you.
-I'll adjust accordingly.
-</p>
+{% block hero_body %}
+Pick a date, time, and place. When you confirm below, I’ll get an email with your choices. You can add a Google Calendar reminder whenever you like.
+{% endblock %}
 
 
-<form method="POST">
+{% block hero_after %}
+
+<form method="POST" id="meeting-form">
 
 {% csrf_token %}
+
+{% if form_error %}
+
+<p class="form-error" role="alert">{{ form_error }}</p>
+
+{% endif %}
 
 
 <input
@@ -83,22 +139,43 @@ class="picker-input"
 required>
 
 
-<br><br>
+<br>
 
+
+<input
+name="meeting_place"
+id="meeting-place"
+type="text"
+class="picker-input picker-input--wide"
+placeholder="Meeting place (as you’d like it to appear)"
+required
+autocomplete="off"
+maxlength="200">
+
+
+<div class="calendar-actions">
 
 <button
 type="submit"
 class="cta-button"
-onclick="return createCalendarEvent()">
-
-Add meeting to calendar →
-
+>
+Send my date, time &amp; place
 </button>
+
+<p class="calendar-hint">Opens Google Calendar with the same details so you can save a reminder (nothing is saved until you confirm in Google).</p>
+
+<button
+type="button"
+class="cta-button"
+id="btn-google-reminder"
+>
+Get a reminder (Google Calendar)
+</button>
+
+</div>
 
 
 </form>
-
-</section>
 
 {% endblock %}
 
@@ -108,69 +185,67 @@ Add meeting to calendar →
 
 <script>
 
-function createCalendarEvent(){
+function readMeetingFields() {
 
-const date =
-document.getElementById("meeting-date").value
+    var date = document.getElementById("meeting-date").value;
 
-const time =
-document.getElementById("meeting-time").value
+    var time = document.getElementById("meeting-time").value;
 
+    var placeEl = document.getElementById("meeting-place");
 
-if(!date || !time){
+    var place = (placeEl && placeEl.value || "").trim();
 
-alert("Please select both date and time")
-
-return false
+    return { date: date, time: time, place: place };
 
 }
 
+function openGoogleCalendarReminder(data) {
 
-const formattedDate =
-date.replace(/-/g,"")
+    var date = data.date;
 
-const formattedTime =
-time.replace(":","")
+    var time = data.time;
 
+    var place = data.place;
 
-const start =
-formattedDate + "T" + formattedTime + "00"
+    if (!date || !time || !place) {
 
+        alert("Please fill in date, time, and meeting place first.");
 
-const hour =
-parseInt(time.split(":")[0]) + 1
+        return;
 
+    }
 
-const end =
-formattedDate +
-"T" +
-hour.toString().padStart(2,"0") +
-time.split(":")[1] +
-"00"
+    var formattedDate = date.replace(/-/g, "");
 
+    var formattedTime = time.replace(":", "");
 
-const calendarURL =
-"https://calendar.google.com/calendar/render?action=TEMPLATE"
-+
-"&text=Lunch Meeting"
-+
-"&location=Front of Mechanical Department"
-+
-"&dates="
-+
-start
-+
-"/"
-+
-end
+    var start = formattedDate + "T" + formattedTime + "00";
 
+    var hour = parseInt(time.split(":")[0], 10) + 1;
 
-window.open(calendarURL,"_blank")
+    var end = formattedDate + "T" + hour.toString().padStart(2, "0") + time.split(":")[1] + "00";
 
+    var loc = encodeURIComponent(place);
 
-return true
+    var calendarURL =
+
+        "https://calendar.google.com/calendar/render?action=TEMPLATE" +
+
+        "&text=Meetup" +
+
+        "&location=" + loc +
+
+        "&dates=" + start + "/" + end;
+
+    window.open(calendarURL, "_blank", "noopener,noreferrer");
 
 }
+
+document.getElementById("btn-google-reminder").addEventListener("click", function () {
+
+    openGoogleCalendarReminder(readMeetingFields());
+
+});
 
 </script>
 

@@ -1,0 +1,89 @@
+{% load static %}
+
+<div class="romantic-hearts" aria-hidden="true">
+    {% for _ in "xxxxxxxxxxxx" %}
+    <span class="heart-float heart-float--{{ forloop.counter0 }}">♥</span>
+    {% endfor %}
+</div>
+
+<div class="ending-music-wrap">
+
+    <p class="ending-music-hint">A little something for you — tap when you’re ready ♡</p>
+
+    <button type="button" class="cta-button ending-play-btn" id="endingPlayBtn">
+        ▶ Play song 
+    </button>
+
+    <audio id="endingMusic" loop playsinline preload="metadata" style="display:none;">
+        <source src="{% static 'music/Khat.mp3' %}" type="audio/mpeg">
+    </audio>
+
+</div>
+
+<script>
+
+(function () {
+
+    var START_SEC = 16;
+
+    var btn = document.getElementById("endingPlayBtn");
+
+    var el = document.getElementById("endingMusic");
+
+    if (!btn || !el) {
+
+        return;
+
+    }
+
+    btn.addEventListener("click", function () {
+
+        function seekThenPlay() {
+
+            var dur = el.duration;
+
+            var t = START_SEC;
+
+            if (isFinite(dur) && dur > 0) {
+
+                t = Math.min(START_SEC, Math.max(0, dur - 0.2));
+
+            }
+
+            try {
+
+                el.currentTime = t;
+
+            } catch (e) {}
+
+            el.play().catch(function () {});
+
+            btn.textContent = "Playing…";
+
+            btn.disabled = true;
+
+            btn.style.opacity = "0.85";
+
+        }
+
+        if (el.readyState >= 1) {
+
+            seekThenPlay();
+
+        } else {
+
+            el.addEventListener("loadedmetadata", function once() {
+
+                el.removeEventListener("loadedmetadata", once);
+
+                seekThenPlay();
+
+            });
+
+        }
+
+    });
+
+})();
+
+</script>

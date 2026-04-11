@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+
+{% block body_class %}landing-page{% endblock %}
+
+{% block content %}
+<section class="hero-section">
+
+<h1 class="hero-title">
+{% block hero_heading %}{% endblock %}
+</h1>
+
+<p class="hero-text">
+{% block hero_body %}{% endblock %}
+</p>
+
+{% block hero_after %}{% endblock %}
+
+</section>
+{% endblock %}

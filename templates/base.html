@@ -1,5 +1,3 @@
-{% load static %}
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -163,56 +161,16 @@ transform:translateY(0);
 
 <body class="{% block body_class %}{% endblock %}">
 
+{% block site_header %}{% endblock %}
 
 {% block content %}
 {% endblock %}
 
-
-<!-- 🎵 Persistent Background Music Controller -->
-
-<iframe
-src="{% url 'music_player' %}"
-id="musicFrame"
-style="display:none;"
-allow="autoplay">
-</iframe>
-
+{% block site_footer %}{% endblock %}
 
 {% block extra_js %}
 {% endblock %}
 
-<script>
-
-    /*
-    Persistent popup music controller
-    */
-    
-    function startMusicPlayer(){
-    
-    if(!window.musicWindow || window.musicWindow.closed){
-    
-    window.musicWindow = window.open(
-    
-    "/music-player/",
-    
-    "musicWindow",
-    
-    "width=200,height=100,left=0,top=0"
-    
-    );
-    
-    }
-    
-    }
-    
-    
-    /*
-    Start music after FIRST click
-    */
-    
-    document.addEventListener("click", startMusicPlayer, { once:true });
-    
-    </script>
 </body>
 
 </html>
