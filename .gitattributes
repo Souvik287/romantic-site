@@ -1,0 +1,4 @@
+# Keep dependency files as LF so Linux (Render) and pip never see Windows UTF-16 / CRLF issues.
+requirements.txt text eol=lf
+runtime.txt text eol=lf
+build.sh text eol=lf
