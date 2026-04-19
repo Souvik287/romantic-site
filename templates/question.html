@@ -7,172 +7,170 @@
 {% block extra_head %}
 
 <style>
+    body.page-question {
 
-body.page-question {
+        margin: 0;
 
-    margin: 0;
+        min-height: 100vh;
 
-    min-height: 100vh;
+        background: #0d1117;
 
-    background: #0d1117;
+        font-family: 'Poppins', sans-serif;
 
-    font-family: 'Poppins', sans-serif;
-
-    color: #e6edf3;
-
-}
-
-.question-layout {
-
-    min-height: 100vh;
-
-    width: 100%;
-
-    display: flex;
-
-    align-items: center;
-
-    justify-content: center;
-
-    padding: 1.5rem;
-
-    box-sizing: border-box;
-
-}
-
-.question-card {
-
-    background: rgba(22, 27, 34, 0.6);
-
-    backdrop-filter: blur(18px);
-
-    border: 1px solid rgba(255, 77, 109, 0.25);
-
-    padding: 60px 40px;
-
-    border-radius: 18px;
-
-    text-align: center;
-
-    max-width: 520px;
-
-    width: 100%;
-
-    animation: fadeUp 1s ease;
-
-}
-
-.question-title {
-
-    font-size: 2rem;
-
-    margin-bottom: 25px;
-
-    color: #ff4d6d;
-
-}
-
-.question-text {
-
-    font-size: 1.2rem;
-
-    margin-bottom: 40px;
-
-    line-height: 1.7;
-
-}
-
-.question-buttons {
-
-    display: flex;
-
-    justify-content: center;
-
-    gap: 20px;
-
-    flex-wrap: wrap;
-
-}
-
-.question-btn {
-
-    padding: 12px 32px;
-
-    border-radius: 40px;
-
-    border: 1.5px solid #ff4d6d;
-
-    background: transparent;
-
-    color: #ff4d6d;
-
-    font-size: 1rem;
-
-    cursor: pointer;
-
-    transition: 0.3s ease;
-
-    text-decoration: none;
-
-    display: inline-block;
-
-    box-sizing: border-box;
-
-    font-family: inherit;
-
-    text-align: center;
-
-}
-
-button.question-btn {
-
-    -webkit-appearance: none;
-
-    appearance: none;
-
-}
-
-a.question-btn:hover,
-button.question-btn:hover {
-
-    background: #ff4d6d;
-
-    color: white;
-
-    box-shadow:
-
-        0 0 12px #ff4d6d,
-
-        0 0 30px #ff4d6d66;
-
-}
-
-.question-step[hidden] {
-
-    display: none !important;
-
-}
-
-@keyframes fadeUp {
-
-    from {
-
-        opacity: 0;
-
-        transform: translateY(40px);
+        color: #e6edf3;
 
     }
 
-    to {
+    .question-layout {
 
-        opacity: 1;
+        min-height: 100vh;
 
-        transform: translateY(0);
+        width: 100%;
+
+        display: flex;
+
+        align-items: center;
+
+        justify-content: center;
+
+        padding: 1.5rem;
+
+        box-sizing: border-box;
 
     }
 
-}
+    .question-card {
 
+        background: rgba(22, 27, 34, 0.6);
+
+        backdrop-filter: blur(18px);
+
+        border: 1px solid rgba(255, 77, 109, 0.25);
+
+        padding: 60px 40px;
+
+        border-radius: 18px;
+
+        text-align: center;
+
+        max-width: 520px;
+
+        width: 100%;
+
+        animation: fadeUp 1s ease;
+
+    }
+
+    .question-title {
+
+        font-size: 2rem;
+
+        margin-bottom: 25px;
+
+        color: #ff4d6d;
+
+    }
+
+    .question-text {
+
+        font-size: 1.2rem;
+
+        margin-bottom: 40px;
+
+        line-height: 1.7;
+
+    }
+
+    .question-buttons {
+
+        display: flex;
+
+        justify-content: center;
+
+        gap: 20px;
+
+        flex-wrap: wrap;
+
+    }
+
+    .question-btn {
+
+        padding: 12px 32px;
+
+        border-radius: 40px;
+
+        border: 1.5px solid #ff4d6d;
+
+        background: transparent;
+
+        color: #ff4d6d;
+
+        font-size: 1rem;
+
+        cursor: pointer;
+
+        transition: 0.3s ease;
+
+        text-decoration: none;
+
+        display: inline-block;
+
+        box-sizing: border-box;
+
+        font-family: inherit;
+
+        text-align: center;
+
+    }
+
+    button.question-btn {
+
+        -webkit-appearance: none;
+
+        appearance: none;
+
+    }
+
+    a.question-btn:hover,
+    button.question-btn:hover {
+
+        background: #ff4d6d;
+
+        color: white;
+
+        box-shadow:
+
+            0 0 12px #ff4d6d,
+
+            0 0 30px #ff4d6d66;
+
+    }
+
+    .question-step[hidden] {
+
+        display: none !important;
+
+    }
+
+    @keyframes fadeUp {
+
+        from {
+
+            opacity: 0;
+
+            transform: translateY(40px);
+
+        }
+
+        to {
+
+            opacity: 1;
+
+            transform: translateY(0);
+
+        }
+
+    }
 </style>
 
 {% endblock %}
@@ -199,7 +197,7 @@ button.question-btn:hover {
 
         <div class="question-buttons">
 
-            <a href="{% url 'taken' %}" class="question-btn">Yes</a>
+            <a href="{% url 'taken' %}" class="question-btn" onclick="logResponse('Have boyfriend','YES')">Yes</a>
 
             <button type="button" class="question-btn" id="btn-no-boyfriend">
                 No
@@ -223,7 +221,8 @@ button.question-btn:hover {
 
             <a href="{% url 'not_taken' %}" class="question-btn">Yes</a>
 
-            <a href="{% url 'respectful_goodbye' %}" class="question-btn">No</a>
+            <a href="{% url 'respectful_goodbye' %}" class="question-btn"
+                onclick="logResponse('Interested','NO')">No</a>
 
         </div>
 
@@ -237,31 +236,31 @@ button.question-btn:hover {
 
 <script>
 
-(function () {
+    (function () {
 
-    var bf = document.getElementById("step-boyfriend");
+        var bf = document.getElementById("step-boyfriend");
 
-    var mu = document.getElementById("step-meetup");
+        var mu = document.getElementById("step-meetup");
 
-    var btn = document.getElementById("btn-no-boyfriend");
+        var btn = document.getElementById("btn-no-boyfriend");
 
-    if (!bf || !mu || !btn) {
+        if (!bf || !mu || !btn) {
 
-        return;
+            return;
 
-    }
+        }
 
-    btn.addEventListener("click", function () {
+        btn.addEventListener("click", function () {
 
-        bf.setAttribute("hidden", "hidden");
+            bf.setAttribute("hidden", "hidden");
 
-        mu.removeAttribute("hidden");
+            mu.removeAttribute("hidden");
 
-        mu.scrollIntoView({ behavior: "smooth", block: "center" });
+            mu.scrollIntoView({ behavior: "smooth", block: "center" });
 
-    });
+        });
 
-})();
+    })();
 
 </script>
 

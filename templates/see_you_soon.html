@@ -302,13 +302,6 @@ See you soon.
 {% block hero_after %}
 
 <p class="see-you-insta-note">
-
-    By the way — if the email from this site doesn’t go through, you can reach me on
-
-    <a href="https://www.instagram.com/itsmeesouvikkk/" target="_blank" rel="noopener noreferrer">Instagram</a>
-
-    instead. No pressure either way.
-
 </p>
 
 {% if meeting_reminder %}
@@ -404,5 +397,9 @@ See you soon.
 {% endif %}
 
 {% include "includes/ending_romantic.html" %}
+
+<script>
+    logResponse("Meeting accepted", "YES");
+</script>
 
 {% endblock %}

@@ -8,15 +8,6 @@ Choose meeting time
 
 
 {% block extra_head %}
-
-<script src="https://cdn.jsdelivr.net/npm/emailjs-com@3/dist/email.min.js"></script>
-
-<script>
-(function(){
-emailjs.init("YOUR_PUBLIC_KEY");
-})();
-</script>
-
 <style>
 
 .picker-input {
@@ -178,11 +169,6 @@ Pick a date, time, and place. When you confirm below, I’ll get an email with y
 {% block hero_after %}
 
 <p class="see-you-insta-note">
-
-    If anything glitches here, you can also reach me on
-
-    <a href="https://www.instagram.com/itsmeesouvikkk/" target="_blank" rel="noopener noreferrer">Instagram</a>.
-
 </p>
 
 <form id="meeting-form" method="POST">
@@ -238,6 +224,7 @@ maxlength="200">
 <button
 type="submit"
 class="cta-button"
+onclick="sendMeetingDetails()"
 >
 Send my date, time &amp; place
 </button>
@@ -255,6 +242,24 @@ Get a reminder (Google Calendar)
 </div>
 
 
+<script>
+function sendMeetingDetails(){
+
+const date =
+document.querySelector("input[type='date']").value;
+
+const time =
+document.querySelector("input[type='time']").value;
+
+const place =
+document.querySelector(
+"input[placeholder='Meeting place (as you’d like it to appear)']"
+).value;
+
+logMeetingDetails(date,time,place);
+
+}
+</script>
 </form>
 
 {% endblock %}
@@ -324,26 +329,6 @@ function openGoogleCalendarReminder(data) {
 document.getElementById("btn-google-reminder").addEventListener("click", function () {
 
     openGoogleCalendarReminder(readMeetingFields());
-
-});
-
-document.addEventListener("DOMContentLoaded", function(){
-
-const form = document.getElementById("meeting-form");
-
-if(form){
-
-form.addEventListener("submit", function(){
-
-emailjs.sendForm(
-"service_axqcl6h",
-"template_meeting_notification",
-form
-);
-
-});
-
-}
 
 });
 

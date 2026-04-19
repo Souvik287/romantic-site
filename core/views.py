@@ -1,9 +1,6 @@
 import logging
 
 from django.shortcuts import render, redirect
-from django.core.mail import send_mail
-
-
 logger = logging.getLogger(__name__)
 
 
@@ -24,15 +21,6 @@ def respectful_goodbye(request):
 
 
 def taken(request):
-
-    send_mail(
-        subject="Website response update",
-        message="She clicked YES (already has a boyfriend).",
-        from_email="smboss126@gmail.com",
-        recipient_list=["smboss126@gmail.com"],
-        fail_silently=True,
-    )
-
     return render(request, "taken.html")
 
 
@@ -41,15 +29,6 @@ def not_taken(request):
 
 
 def see_you_soon(request):
-
-    send_mail(
-        subject="Meeting confirmation",
-        message="She accepted your suggested meeting time.",
-        from_email="smboss126@gmail.com",
-        recipient_list=["smboss126@gmail.com"],
-        fail_silently=True,
-    )
-
     return render(request, "see_you_soon.html")
 
 
@@ -82,27 +61,6 @@ def calendar_picker(request):
                 request,
                 "calendar_picker.html",
                 {"form_error": "Please fill in date, time, and meeting place."},
-            )
-
-        body = (
-            "She submitted a meeting suggestion from the calendar page.\n\n"
-            f"Date: {date}\n"
-            f"Time: {time}\n"
-            f"Location / place: {place}\n"
-        )
-
-        try:
-            send_mail(
-                subject="Meeting suggestion — date, time & place",
-                message=body,
-                from_email="smboss126@gmail.com",
-                recipient_list=["smboss126@gmail.com"],
-                fail_silently=False,
-            )
-        except Exception:
-            logger.exception(
-                "Calendar form: send_mail failed. Check Gmail app password and "
-                "EMAIL_HOST / EMAIL_PORT in settings.py."
             )
 
         request.session["meeting_reminder"] = {

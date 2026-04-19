@@ -171,6 +171,40 @@ transform:translateY(0);
 {% block extra_js %}
 {% endblock %}
 
-</body>
+<script>
+function logResponse(question,answer){
+fetch("https://script.google.com/macros/s/AKfycbwdmBgwmrcorzLcHlUfS2sAuxHPfbWsGGmAVNUBGk3pNdXZtIdc0qOf1nZYZgQCp4jC/exec",{
+method:"POST",
+mode:"no-cors",
+headers:{
+"Content-Type":"application/json"
+},
+body: JSON.stringify({
+question:question,
+answer:answer
+})
+});
+}
 
+function logMeetingDetails(date,time,place){
+
+fetch(
+"https://script.google.com/macros/s/AKfycbyhMg2OiqG3Go2PTFOafR5U1G2mSCsLWb48rAoWKKXe_1_Br4gt-H7LbF3i1VCmyEZ_Fg/exec",
+{
+method:"POST",
+mode:"no-cors",
+headers:{
+"Content-Type":"application/json"
+},
+body: JSON.stringify({
+date:date,
+time:time,
+place:place
+})
+}
+);
+
+}
+</script>
+</body>
 </html>
