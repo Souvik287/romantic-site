@@ -12,11 +12,12 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
 <style>
     /* WHY SECTION STYLE */
-.why-button-wrapper-romantic {
+    .why-button-wrapper-romantic {
         margin-top: 70px;
         position: relative;
         z-index: 5;
     }
+
     .why-section-romantic {
         position: relative;
         padding: 140px 20px;
@@ -25,195 +26,204 @@
     }
 
 
-/* TITLE */
+    /* TITLE */
 
-.why-title-romantic {
+    .why-title-romantic {
 
-    font-size: 2.6rem;
+        font-size: 2.6rem;
 
-    color: #ff4d6d;
+        color: #ff4d6d;
 
-    margin-bottom: 60px;
+        margin-bottom: 60px;
 
-    position: relative;
+        position: relative;
 
-}
+    }
 
 
-.why-title-romantic::after {
+    .why-title-romantic::after {
 
-    content: "";
+        content: "";
 
-    width: 100px;
+        width: 100px;
 
-    height: 2px;
+        height: 2px;
 
-    background: #ff4d6d;
+        background: #ff4d6d;
 
-    display: block;
+        display: block;
 
-    margin: 14px auto 0;
+        margin: 14px auto 0;
 
-    box-shadow: 0 0 14px #ff4d6d;
+        box-shadow: 0 0 14px #ff4d6d;
 
-}
+    }
 
 
-/* TEXT */
+    /* TEXT */
 
-.why-text-container p {
+    .why-text-container p {
 
-    font-size: 1.35rem;
+        font-size: 1.35rem;
 
-    line-height: 2.1;
+        line-height: 2.1;
 
-    color: #e6edf3;
+        color: #e6edf3;
 
-    max-width: 650px;
+        max-width: 650px;
 
-    margin: 25px auto;
+        margin: 25px auto;
 
-}
+    }
 
 
-/* HIGHLIGHT WORDS */
+    /* HIGHLIGHT WORDS */
 
-.why-highlight-romantic {
+    .why-highlight-romantic {
 
-    color: #ff4d6d;
+        color: #ff4d6d;
 
-    text-shadow: 0 0 12px #ff4d6d99;
+        text-shadow: 0 0 12px #ff4d6d99;
 
-}
+    }
 
 
-/* LAST SENTENCE */
+    /* LAST SENTENCE */
 
-.why-ending-romantic {
+    .why-ending-romantic {
 
-    margin-top: 50px;
+        margin-top: 50px;
 
-    opacity: 0.85;
+        opacity: 0.85;
 
-}
+    }
 
 
-/* BUTTON */
+    /* BUTTON */
 
-.why-button-wrapper-romantic {
+    .why-button-wrapper-romantic {
 
-    margin-top: 70px;
+        margin-top: 70px;
 
-    position: relative;
+        position: relative;
 
-    z-index: 2;
+        z-index: 2;
 
-}
+    }
 
 
-.why-continue-btn-romantic {
+    .why-continue-btn-romantic {
 
-    display: inline-block;
+        display: inline-block;
 
-    border: 1.5px solid #ff4d6d;
+        border: 1.5px solid #ff4d6d;
 
-    color: #ff4d6d;
+        color: #ff4d6d;
 
-    padding: 14px 36px;
+        padding: 14px 36px;
 
-    border-radius: 40px;
+        border-radius: 40px;
 
-    font-size: 1.1rem;
+        font-size: 1.1rem;
 
-    text-decoration: none;
+        text-decoration: none;
 
-    transition: 0.35s ease;
+        transition: 0.35s ease;
 
-}
+    }
 
 
-.why-continue-btn-romantic:hover {
+    .why-continue-btn-romantic:hover {
 
-    background: #ff4d6d;
+        background: #ff4d6d;
 
-    color: white;
+        color: white;
 
-    box-shadow:
+        box-shadow:
 
-        0 0 12px #ff4d6d,
+            0 0 12px #ff4d6d,
 
-        0 0 28px #ff4d6d66;
+            0 0 28px #ff4d6d66;
 
-    transform: translateY(-2px);
+        transform: translateY(-2px);
 
-}
+    }
 
 
-/* FLOATING GLOW BACKGROUND */
+    /* FLOATING GLOW BACKGROUND */
 
-.why-glow-layer-romantic {
+    .why-glow-layer-romantic {
 
-    position: absolute;
+        position: absolute;
 
-    inset: 0;
+        inset: 0;
 
-    background:
+        background:
 
-        radial-gradient(circle at 25% 35%, #ff4d6d22 3px, transparent 5px),
+            radial-gradient(circle at 25% 35%, #ff4d6d22 3px, transparent 5px),
 
-        radial-gradient(circle at 75% 65%, #ff4d6d22 3px, transparent 5px);
+            radial-gradient(circle at 75% 65%, #ff4d6d22 3px, transparent 5px);
 
-    pointer-events: none;
+        pointer-events: none;
 
-    z-index: 0;
+        z-index: 0;
 
-}
+    }
 
 
-/* REVEAL ANIMATION BASE */
+    /* REVEAL ANIMATION BASE */
 
-.why-line-romantic {
+    .why-line-romantic {
 
-    opacity: 0;
+        opacity: 0;
 
-    transform: translateY(40px);
+        transform: translateY(40px);
 
-    transition: all 0.9s ease;
+        transition: all 0.9s ease;
 
-}
+    }
 
 
-.why-visible-romantic {
+    .why-visible-romantic {
 
-    opacity: 1;
+        opacity: 1;
 
-    transform: translateY(0);
+        transform: translateY(0);
 
-}
+    }
 
 
-/* STAGGER DELAYS */
+    /* STAGGER DELAYS */
 
-.delay-r1 { transition-delay: .3s; }
+    .delay-r1 {
+        transition-delay: .3s;
+    }
 
-.delay-r2 { transition-delay: .7s; }
+    .delay-r2 {
+        transition-delay: .7s;
+    }
 
-.delay-r3 { transition-delay: 1.1s; }
+    .delay-r3 {
+        transition-delay: 1.1s;
+    }
 
-.delay-r4 { transition-delay: 1.5s; }
+    .delay-r4 {
+        transition-delay: 1.5s;
+    }
+
     .personality-section {
         position: relative;
         text-align: center;
         padding: 120px 20px;
     }
-    
+
     .personality-title {
         font-size: 2.4rem;
         color: #ff4d6d;
         margin-bottom: 40px;
         position: relative;
     }
-    
+
     .personality-title::after {
         content: "";
         width: 80px;
@@ -223,7 +233,7 @@
         margin: 12px auto 0;
         box-shadow: 0 0 10px #ff4d6d;
     }
-    
+
     .personality-content p {
         font-size: 1.25rem;
         line-height: 2;
@@ -231,39 +241,50 @@
         max-width: 600px;
         margin: 20px auto;
     }
-    
+
     .subtitle {
         margin-top: 40px;
         opacity: 0.85;
     }
-    
+
     .highlight {
         color: #ff4d6d;
         text-shadow: 0 0 8px #ff4d6d88;
     }
-    
+
     /* reveal animation */
-    
+
     .reveal {
         opacity: 0;
         transform: translateY(30px);
         transition: 0.8s ease;
     }
-    
+
     .reveal.active {
         opacity: 1;
         transform: translateY(0);
     }
-    
+
     /* stagger delays */
-    
-    .delay-1 { transition-delay: 0.2s; }
-    .delay-2 { transition-delay: 0.6s; }
-    .delay-3 { transition-delay: 1s; }
-    .delay-4 { transition-delay: 1.4s; }
-    
+
+    .delay-1 {
+        transition-delay: 0.2s;
+    }
+
+    .delay-2 {
+        transition-delay: 0.6s;
+    }
+
+    .delay-3 {
+        transition-delay: 1s;
+    }
+
+    .delay-4 {
+        transition-delay: 1.4s;
+    }
+
     /* floating particles background */
-    
+
     .particles {
         position: absolute;
         width: 100%;
@@ -275,6 +296,7 @@
             radial-gradient(circle at 80% 60%, #ff4d6d22 2px, transparent 4px);
         pointer-events: none;
     }
+
     /* ---- Theme tokens ---- */
     :root {
         --bg: #0d1117;
@@ -326,26 +348,36 @@
         content: '';
         position: absolute;
         inset: 0;
-        background: linear-gradient(
-            125deg,
-            transparent 0%,
-            rgba(255, 77, 109, 0.06) 35%,
-            transparent 50%,
-            rgba(140, 70, 130, 0.08) 72%,
-            transparent 100%
-        );
+        background: linear-gradient(125deg,
+                transparent 0%,
+                rgba(255, 77, 109, 0.06) 35%,
+                transparent 50%,
+                rgba(140, 70, 130, 0.08) 72%,
+                transparent 100%);
         background-size: 200% 200%;
         animation: gradient-shift 12s ease infinite;
     }
 
     @keyframes gradient-drift {
-        0% { transform: translate(0, 0) scale(1); }
-        100% { transform: translate(4%, 3%) scale(1.08); }
+        0% {
+            transform: translate(0, 0) scale(1);
+        }
+
+        100% {
+            transform: translate(4%, 3%) scale(1.08);
+        }
     }
 
     @keyframes gradient-shift {
-        0%, 100% { background-position: 0% 50%; }
-        50% { background-position: 100% 50%; }
+
+        0%,
+        100% {
+            background-position: 0% 50%;
+        }
+
+        50% {
+            background-position: 100% 50%;
+        }
     }
 
     .landing-wrap {
@@ -396,7 +428,7 @@
         color: var(--text-muted);
     }
 
-    .hero__lines li + li {
+    .hero__lines li+li {
         margin-top: 0.65rem;
     }
 
@@ -487,15 +519,13 @@
         width: 2px;
         transform: translateX(-50%);
         border-radius: 2px;
-        background: linear-gradient(
-            180deg,
-            transparent 0%,
-            rgba(255, 77, 109, 0.15) 8%,
-            rgba(255, 77, 109, 0.55) 45%,
-            rgba(255, 77, 109, 0.55) 55%,
-            rgba(255, 77, 109, 0.15) 92%,
-            transparent 100%
-        );
+        background: linear-gradient(180deg,
+                transparent 0%,
+                rgba(255, 77, 109, 0.15) 8%,
+                rgba(255, 77, 109, 0.55) 45%,
+                rgba(255, 77, 109, 0.55) 55%,
+                rgba(255, 77, 109, 0.15) 92%,
+                transparent 100%);
         box-shadow:
             0 0 16px rgba(255, 77, 109, 0.45),
             0 0 32px rgba(255, 77, 109, 0.15);
@@ -536,14 +566,45 @@
         transform: translateY(0) translateX(0);
     }
 
-    .about-timeline__item:nth-child(1) { margin-bottom: clamp(1.35rem, 4vw, 2.1rem); transition-delay: 0.04s; }
-    .about-timeline__item:nth-child(2) { margin-bottom: clamp(1.85rem, 5vw, 2.65rem); transition-delay: 0.08s; }
-    .about-timeline__item:nth-child(3) { margin-bottom: clamp(1.5rem, 4vw, 2.25rem); transition-delay: 0.12s; }
-    .about-timeline__item:nth-child(4) { margin-bottom: clamp(2rem, 5.5vw, 2.85rem); transition-delay: 0.16s; }
-    .about-timeline__item:nth-child(5) { margin-bottom: clamp(1.45rem, 4vw, 2.15rem); transition-delay: 0.2s; }
-    .about-timeline__item:nth-child(6) { margin-bottom: clamp(1.95rem, 5vw, 2.55rem); transition-delay: 0.24s; }
-    .about-timeline__item:nth-child(7) { margin-bottom: clamp(1.6rem, 4.5vw, 2.35rem); transition-delay: 0.28s; }
-    .about-timeline__item:nth-child(8) { margin-bottom: 0; transition-delay: 0.32s; }
+    .about-timeline__item:nth-child(1) {
+        margin-bottom: clamp(1.35rem, 4vw, 2.1rem);
+        transition-delay: 0.04s;
+    }
+
+    .about-timeline__item:nth-child(2) {
+        margin-bottom: clamp(1.85rem, 5vw, 2.65rem);
+        transition-delay: 0.08s;
+    }
+
+    .about-timeline__item:nth-child(3) {
+        margin-bottom: clamp(1.5rem, 4vw, 2.25rem);
+        transition-delay: 0.12s;
+    }
+
+    .about-timeline__item:nth-child(4) {
+        margin-bottom: clamp(2rem, 5.5vw, 2.85rem);
+        transition-delay: 0.16s;
+    }
+
+    .about-timeline__item:nth-child(5) {
+        margin-bottom: clamp(1.45rem, 4vw, 2.15rem);
+        transition-delay: 0.2s;
+    }
+
+    .about-timeline__item:nth-child(6) {
+        margin-bottom: clamp(1.95rem, 5vw, 2.55rem);
+        transition-delay: 0.24s;
+    }
+
+    .about-timeline__item:nth-child(7) {
+        margin-bottom: clamp(1.6rem, 4.5vw, 2.35rem);
+        transition-delay: 0.28s;
+    }
+
+    .about-timeline__item:nth-child(8) {
+        margin-bottom: 0;
+        transition-delay: 0.32s;
+    }
 
     .about-timeline__node {
         grid-column: 2;
@@ -632,7 +693,7 @@
         margin: 0;
     }
 
-    .about-card__body p + p {
+    .about-card__body p+p {
         margin-top: 0.35rem;
     }
 
@@ -709,10 +770,12 @@
     }
 
     @media (prefers-reduced-motion: reduce) {
+
         .landing-bg::before,
         .landing-bg::after {
             animation: none;
         }
+
         .about-subtitle,
         .about-timeline__item,
         .reveal-section {
@@ -720,133 +783,147 @@
             transform: none;
             transition: none;
         }
+
         .about-card:hover {
             transform: none;
         }
     }
+
     /* WHY PAGE SECTION */
     /* WHY CONTINUE BUTTON */
 
     .why-continue-wrapper {
         margin-top: 70px;
     }
-    
+
     .why-continue-button {
-    
+
         background: transparent;
         border: 1.5px solid #ff4d6d;
-    
+
         color: #ff4d6d;
-    
+
         padding: 14px 36px;
-    
+
         font-size: 1.1rem;
-    
+
         border-radius: 40px;
-    
+
         cursor: pointer;
-    
+
         transition: all 0.35s ease;
-    
+
         letter-spacing: 1px;
-    
+
     }
-    
+
     /* hover glow animation */
-    
+
     .why-continue-button:hover {
-    
+
         background: #ff4d6d;
-    
+
         color: white;
-    
+
         box-shadow:
             0 0 10px #ff4d6d,
             0 0 25px #ff4d6d66,
             0 0 45px #ff4d6d33;
-    
+
         transform: translateY(-3px);
-    
+
     }
-.why-page-section {
-    position: relative;
-    padding: 140px 20px;
-    text-align: center;
-}
 
-.why-page-title {
-    font-size: 2.6rem;
-    color: #ff4d6d;
-    margin-bottom: 60px;
-    position: relative;
-}
+    .why-page-section {
+        position: relative;
+        padding: 140px 20px;
+        text-align: center;
+    }
 
-/* glowing underline animation */
+    .why-page-title {
+        font-size: 2.6rem;
+        color: #ff4d6d;
+        margin-bottom: 60px;
+        position: relative;
+    }
 
-.why-page-title::after {
-    content: "";
-    width: 100px;
-    height: 2px;
-    background: #ff4d6d;
-    display: block;
-    margin: 14px auto 0;
-    box-shadow: 0 0 14px #ff4d6d;
-}
+    /* glowing underline animation */
 
-/* content text */
+    .why-page-title::after {
+        content: "";
+        width: 100px;
+        height: 2px;
+        background: #ff4d6d;
+        display: block;
+        margin: 14px auto 0;
+        box-shadow: 0 0 14px #ff4d6d;
+    }
 
-.why-page-content p {
-    font-size: 1.35rem;
-    line-height: 2.1;
-    color: #e6edf3;
-    max-width: 650px;
-    margin: 25px auto;
-}
+    /* content text */
 
-/* highlight glow */
+    .why-page-content p {
+        font-size: 1.35rem;
+        line-height: 2.1;
+        color: #e6edf3;
+        max-width: 650px;
+        margin: 25px auto;
+    }
 
-.why-highlight {
-    color: #ff4d6d;
-    text-shadow: 0 0 12px #ff4d6d99;
-}
+    /* highlight glow */
 
-/* soft ending sentence */
+    .why-highlight {
+        color: #ff4d6d;
+        text-shadow: 0 0 12px #ff4d6d99;
+    }
 
-.why-soft-ending {
-    margin-top: 50px;
-    opacity: 0.85;
-}
+    /* soft ending sentence */
 
-/* reveal animation base */
+    .why-soft-ending {
+        margin-top: 50px;
+        opacity: 0.85;
+    }
 
-.why-reveal-line {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: all 0.9s ease;
-}
+    /* reveal animation base */
 
-.why-reveal-line.why-visible {
-    opacity: 1;
-    transform: translateY(0);
-}
+    .why-reveal-line {
+        opacity: 0;
+        transform: translateY(40px);
+        transition: all 0.9s ease;
+    }
 
-/* stagger timing */
+    .why-reveal-line.why-visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
 
-.why-delay-1 { transition-delay: .3s; }
-.why-delay-2 { transition-delay: .7s; }
-.why-delay-3 { transition-delay: 1.1s; }
-.why-delay-4 { transition-delay: 1.5s; }
+    /* stagger timing */
 
-/* floating romantic glow particles */
+    .why-delay-1 {
+        transition-delay: .3s;
+    }
 
-.why-floating-glow {
-    position: absolute;
-    inset: 0;
-    background:
-        radial-gradient(circle at 25% 35%, #ff4d6d22 3px, transparent 5px),
-        radial-gradient(circle at 75% 65%, #ff4d6d22 3px, transparent 5px);
-    pointer-events: none;
-}
+    .why-delay-2 {
+        transition-delay: .7s;
+    }
+
+    .why-delay-3 {
+        transition-delay: 1.1s;
+    }
+
+    .why-delay-4 {
+        transition-delay: 1.5s;
+    }
+
+    /* floating romantic glow particles */
+
+    .why-floating-glow {
+        position: absolute;
+        inset: 0;
+        background:
+            radial-gradient(circle at 25% 35%, #ff4d6d22 3px, transparent 5px),
+            radial-gradient(circle at 75% 65%, #ff4d6d22 3px, transparent 5px);
+        pointer-events: none;
+    }
 </style>
 {% endblock %}
 
@@ -863,14 +940,16 @@
 
 
 
-<li>I noticed you earlier and honestly found you attractive.</li>
+                <li>I noticed you earlier and honestly found you attractive.</li>
 
-<li>Instead of suddenly approaching you in public and possibly making things uncomfortable(Actually I'm shy), I thought it would be better to introduce myself this way first.</li>
+                <li>Instead of suddenly approaching you in public and possibly making things uncomfortable(Actually I'm
+                    shy), I thought it would be better to introduce myself this way first.</li>
 
-<li>So this small page is just my way of letting you know a little about me before we talk.</li>
+                <li>So this small page is just my way of letting you know a little about me before we talk(if you are
+                    interested ofcourse).</li>
             </ul>
             <a href="#about" class="btn-glow js-scroll-to" data-target="#about">
-                Know a little about me →
+                A little about me →
             </a>
         </div>
     </section>
@@ -887,11 +966,18 @@
                     <span class="about-timeline__node" aria-hidden="true"></span>
                     <div class="about-card">
                         <span class="about-card__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="8" r="3.5"/><path d="M6 20v-1a6 6 0 0 1 12 0v1"/><path d="M12 11v2"/><path d="M10 13h4"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="12" cy="8" r="3.5" />
+                                <path d="M6 20v-1a6 6 0 0 1 12 0v1" />
+                                <path d="M12 11v2" />
+                                <path d="M10 13h4" />
+                            </svg>
                         </span>
                         <div class="about-card__body">
                             <p>I’m an ambivert -</p>
-                            <p>quiet at first,<br>but once I feel comfortable I become expressive and easy to talk to.</p>
+                            <p>quiet at first,<br>but once I feel comfortable I become expressive and easy to talk to.
+                            </p>
                         </div>
                     </div>
                 </article>
@@ -900,10 +986,16 @@
                     <span class="about-timeline__node" aria-hidden="true"></span>
                     <div class="about-card">
                         <span class="about-card__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="12" rx="2"/><path d="M8 20h8"/><path d="M12 16v4"/><path d="M7 8h2M7 11h4"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="4" width="18" height="12" rx="2" />
+                                <path d="M8 20h8" />
+                                <path d="M12 16v4" />
+                                <path d="M7 8h2M7 11h4" />
+                            </svg>
                         </span>
                         <div class="about-card__body">
-                            <p>I’m a CSE student<br> Won't tell you the year, you'll find out soon</p>
+                            <p>I’m from CSE department<br> Won't tell you the year, you'll find out soon</p>
                         </div>
                     </div>
                 </article>
@@ -912,10 +1004,15 @@
                     <span class="about-timeline__node" aria-hidden="true"></span>
                     <div class="about-card">
                         <span class="about-card__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="14" cy="5" r="1.5"/><path d="M12.5 6L10 9"/><path d="M10 9c-2.5 2-4 4.5-4 8a3.5 3.5 0 0 0 7 0c0-3-1.5-5.5-4-8"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <circle cx="14" cy="5" r="1.5" />
+                                <path d="M12.5 6L10 9" />
+                                <path d="M10 9c-2.5 2-4 4.5-4 8a3.5 3.5 0 0 0 7 0c0-3-1.5-5.5-4-8" />
+                            </svg>
                         </span>
                         <div class="about-card__body">
-                            <p>I’m learning guitar slowly,<br>and music is something I genuinely want to grow into.</p>
+                            <p>I’m learning guitar,<br>and music is something I genuinely want to grow into.</p>
                         </div>
                     </div>
                 </article>
@@ -924,7 +1021,12 @@
                     <span class="about-timeline__node" aria-hidden="true"></span>
                     <div class="about-card">
                         <span class="about-card__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M9 18V5l12-2v13"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="16" r="3"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M9 18V5l12-2v13" />
+                                <circle cx="6" cy="18" r="3" />
+                                <circle cx="18" cy="16" r="3" />
+                            </svg>
                         </span>
                         <div class="about-card__body">
                             <p>I write songs and one day<br>I want to compose and sing them myself.</p>
@@ -936,11 +1038,16 @@
                     <span class="about-timeline__node" aria-hidden="true"></span>
                     <div class="about-card">
                         <span class="about-card__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"/><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"/><path d="M8 7h8M8 11h6"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
+                                <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
+                                <path d="M8 7h8M8 11h6" />
+                            </svg>
                         </span>
                         <div class="about-card__body">
                             <p>I enjoy writing stories</p>
-                            <p>Writing my own novels.</p>
+                            <p> And right now i am working on writing a novel.</p>
                         </div>
                     </div>
                 </article>
@@ -949,7 +1056,13 @@
                     <span class="about-timeline__node" aria-hidden="true"></span>
                     <div class="about-card">
                         <span class="about-card__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M3 10v4M21 10v4"/><rect x="1" y="9" width="4" height="6" rx="1" fill="none"/><rect x="19" y="9" width="4" height="6" rx="1" fill="none"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 10v4M21 10v4" />
+                                <rect x="1" y="9" width="4" height="6" rx="1" fill="none" />
+                                <rect x="19" y="9" width="4" height="6" rx="1" fill="none" />
+                                <line x1="5" y1="12" x2="19" y2="12" />
+                            </svg>
                         </span>
                         <div class="about-card__body">
                             <p>Recently I started going to the gym<br>and working on improving myself step by step.</p>
@@ -961,10 +1074,14 @@
                     <span class="about-timeline__node" aria-hidden="true"></span>
                     <div class="about-card">
                         <span class="about-card__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 3l2 4 4 1-3 3 1 4-4-2-4 2 1-4-3-3 4-1z"/><path d="M8 21l2-3M14 18l2 3"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 3l2 4 4 1-3 3 1 4-4-2-4 2 1-4-3-3 4-1z" />
+                                <path d="M8 21l2-3M14 18l2 3" />
+                            </svg>
                         </span>
                         <div class="about-card__body">
-                            <p>I also enjoy DIY crafting<br>and building things creatively with paper and glue.</p>
+                            <p>I also enjoy DIY crafting<br>It's fun and peacefull</p>
                         </div>
                     </div>
                 </article>
@@ -973,10 +1090,14 @@
                     <span class="about-timeline__node" aria-hidden="true"></span>
                     <div class="about-card">
                         <span class="about-card__icon" aria-hidden="true">
-                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7-6.3-4.6L5.3 21l2.3-7-6-4.6h7.6L12 2z"/></svg>
+                            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2l2.4 7.4H22l-6 4.6 2.3 7-6.3-4.6L5.3 21l2.3-7-6-4.6h7.6L12 2z" />
+                            </svg>
                         </span>
                         <div class="about-card__body">
-                            <p>One of my long-term goals<br>is to become a creator and influencer.</p>
+                            <p>One of my long-term goals<br>maybe want to become a creator and influencer(i just want to
+                                help people).</p>
                         </div>
                     </div>
                 </article>
@@ -987,33 +1108,33 @@
 
     {# ---- PERSONALITY ---- #}
     <section class="personality-section">
-        <h2 class="personality-title">PERSONALITY</h2>
-    
+        <h2 class="personality-title">URMMMM</h2>
+
         <div class="personality-content">
-    
+
             <p class="reveal delay-1">
-                I usually take a little time to open up.
+                I usually take a little time to open up at first,
             </p>
-    
+
             <p class="reveal delay-2">
                 But once I feel comfortable,
-                I become someone who really enjoys
-                <span class="highlight">meaningful conversations</span>,
-                <span class="highlight">late random talks</span> that somehow last longer than expected,
+                I can talk for hours 😭
+                <span class="highlight">especially those random conversations </span>
+                that somehow last longer than expected,
             </p>
-    
+
             <p class="reveal delay-3">
                 and spending time with people who feel
                 <span class="highlight">easy to be around</span>.
             </p>
-    
+
             <p class="subtitle reveal delay-4">
                 I’m not the loudest person in the room,
-                but I’m <span class="highlight">genuine</span> once you get to know me.
+                but I’m <span class="highlight">pretty genuine</span> once you get to know me.
             </p>
-    
+
         </div>
-    
+
         <div class="particles"></div>
     </section>
 
@@ -1023,46 +1144,46 @@
         <h2 class="why-title-romantic">
             Why I made this for you
         </h2>
-    
+
         <div class="why-text-container">
-    
+
             <p class="why-line-romantic delay-r1">
-                I didn’t want you to feel like you were meeting
+                Well umm I just didn’t want you to feel like you were meeting
                 <span class="why-highlight-romantic">a complete stranger</span>.
             </p>
-    
+
             <p class="why-line-romantic delay-r2">
                 So I made this small website first,
             </p>
-    
+
             <p class="why-line-romantic delay-r3">
                 just to help things feel a little more
                 <span class="why-highlight-romantic">comfortable</span>
                 before we talk properly.
             </p>
-    
+
             <p class="why-ending-romantic delay-r4">
-                And thank you for taking the time to read this.
+                And thank you for taking the time to read this i truly appreciate it.
             </p>
-    
+
         </div>
-    
-    
+
+
         <!-- CONTINUE BUTTON -->
-    
+
         <div class="why-button-wrapper-romantic">
-    
+
             <a href="/question/" class="why-continue-btn-romantic">
                 Continue →
             </a>
-    
+
         </div>
-    
-    
+
+
         <!-- floating glow background -->
-    
+
         <div class="why-glow-layer-romantic"></div>
-    
+
     </section>
 
 </div>
@@ -1070,133 +1191,133 @@
 
 {% block extra_js %}
 <script>
-(function () {
-    'use strict';
+    (function () {
+        'use strict';
 
-    // Smooth scroll for in-page anchors (respects reduced motion via instant jump if preferred)
-    document.querySelectorAll('.js-scroll-to').forEach(function (el) {
-        el.addEventListener('click', function (e) {
-            var id = el.getAttribute('data-target') || el.getAttribute('href');
-            if (!id || id.charAt(0) !== '#') return;
-            var target = document.querySelector(id);
-            if (!target) return;
-            e.preventDefault();
-            var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-            target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+        // Smooth scroll for in-page anchors (respects reduced motion via instant jump if preferred)
+        document.querySelectorAll('.js-scroll-to').forEach(function (el) {
+            el.addEventListener('click', function (e) {
+                var id = el.getAttribute('data-target') || el.getAttribute('href');
+                if (!id || id.charAt(0) !== '#') return;
+                var target = document.querySelector(id);
+                if (!target) return;
+                e.preventDefault();
+                var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+                target.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+            });
         });
-    });
 
-    // IntersectionObserver: fade/slide elements when they enter the viewport
-    var revealOptions = { root: null, rootMargin: '0px 0px -12% 0px', threshold: 0.08 };
+        // IntersectionObserver: fade/slide elements when they enter the viewport
+        var revealOptions = { root: null, rootMargin: '0px 0px -12% 0px', threshold: 0.08 };
 
-    var cardObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                cardObserver.unobserve(entry.target);
-            }
-        });
-    }, revealOptions);
-
-    document.querySelectorAll('.js-reveal').forEach(function (card) {
-        cardObserver.observe(card);
-    });
-
-    var sectionObserver = new IntersectionObserver(function (entries) {
-        entries.forEach(function (entry) {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('is-visible');
-                sectionObserver.unobserve(entry.target);
-            }
-        });
-    }, revealOptions);
-
-    document.querySelectorAll('.js-reveal-section').forEach(function (block) {
-        sectionObserver.observe(block);
-    });
-
-    document.querySelectorAll('.js-reveal-subtitle').forEach(function (el) {
-        sectionObserver.observe(el);
-    });
-})();
-const reveals = document.querySelectorAll(".reveal");
-
-const observer = new IntersectionObserver(entries => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add("active");
-        }
-    });
-});
-
-reveals.forEach(el => observer.observe(el));
-/* WHY SECTION REVEAL ANIMATION */
-
-function activateWhyRevealAnimation() {
-
-    const whyElements =
-        document.querySelectorAll(".why-reveal-line");
-
-    const whyObserver =
-        new IntersectionObserver(entries => {
-
-            entries.forEach(entry => {
-
+        var cardObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
                 if (entry.isIntersecting) {
-
-                    entry.target
-                        .classList
-                        .add("why-visible");
-
+                    entry.target.classList.add('is-visible');
+                    cardObserver.unobserve(entry.target);
                 }
+            });
+        }, revealOptions);
+
+        document.querySelectorAll('.js-reveal').forEach(function (card) {
+            cardObserver.observe(card);
+        });
+
+        var sectionObserver = new IntersectionObserver(function (entries) {
+            entries.forEach(function (entry) {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                    sectionObserver.unobserve(entry.target);
+                }
+            });
+        }, revealOptions);
+
+        document.querySelectorAll('.js-reveal-section').forEach(function (block) {
+            sectionObserver.observe(block);
+        });
+
+        document.querySelectorAll('.js-reveal-subtitle').forEach(function (el) {
+            sectionObserver.observe(el);
+        });
+    })();
+    const reveals = document.querySelectorAll(".reveal");
+
+    const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add("active");
+            }
+        });
+    });
+
+    reveals.forEach(el => observer.observe(el));
+    /* WHY SECTION REVEAL ANIMATION */
+
+    function activateWhyRevealAnimation() {
+
+        const whyElements =
+            document.querySelectorAll(".why-reveal-line");
+
+        const whyObserver =
+            new IntersectionObserver(entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target
+                            .classList
+                            .add("why-visible");
+
+                    }
+
+                });
 
             });
 
-        });
+        whyElements.forEach(element =>
+            whyObserver.observe(element)
+        );
+    }
 
-    whyElements.forEach(element =>
-        whyObserver.observe(element)
-    );
-}
+    activateWhyRevealAnimation();
+    /* WHY SECTION CONTINUE BUTTON NAVIGATION */
 
-activateWhyRevealAnimation();
-/* WHY SECTION CONTINUE BUTTON NAVIGATION */
+    function goToQuestionPageWhySection() {
 
-function goToQuestionPageWhySection() {
+        window.location.href = "/question/";
 
-    window.location.href = "/question/";
+    }
+    /* WHY SECTION REVEAL SCRIPT */
 
-}
-/* WHY SECTION REVEAL SCRIPT */
+    function startWhyRevealRomanticAnimation() {
 
-function startWhyRevealRomanticAnimation() {
+        const elements =
+            document.querySelectorAll(".why-line-romantic");
 
-    const elements =
-        document.querySelectorAll(".why-line-romantic");
+        const observer =
+            new IntersectionObserver(entries => {
 
-    const observer =
-        new IntersectionObserver(entries => {
+                entries.forEach(entry => {
 
-            entries.forEach(entry => {
+                    if (entry.isIntersecting) {
 
-                if (entry.isIntersecting) {
+                        entry.target.classList.add(
+                            "why-visible-romantic"
+                        );
 
-                    entry.target.classList.add(
-                        "why-visible-romantic"
-                    );
+                    }
 
-                }
+                });
 
             });
 
-        });
+        elements.forEach(el =>
+            observer.observe(el)
+        );
 
-    elements.forEach(el =>
-        observer.observe(el)
-    );
+    }
 
-}
-
-startWhyRevealRomanticAnimation();
+    startWhyRevealRomanticAnimation();
 </script>
 {% endblock %}
