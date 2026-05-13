@@ -2,18 +2,19 @@
 
 {% block hero_heading %}
 
-I’d love to meet you
+I’d like to know you
 
 {% endblock %}
 
 
 {% block hero_body %}
 
-It would be really wonderful to meet you <strong>in person</strong>.
+It would be really wonderful to talk to you <strong>in person</strong>.
 
 <br><br>
 
-I already mentioned the place I had in mind in my letter—would you be comfortable meeting there? If something else feels better for you, you can say so in the next step.
+I already mentioned the place I had in mind in my letter—would you be comfortable meeting there? If something else feels
+better for you, you can say so in the next step.
 
 <br><br>
 
@@ -26,21 +27,21 @@ What feels right for you?
 
 <div style="margin-top:40px;">
 
-<a href="{% url 'see_you_soon' %}" class="cta-button" onclick="logResponse('Meeting accepted','YES')">
+    <a href="{% url 'see_you_soon' %}" class="cta-button" onclick="logResponse('Meeting accepted','YES')">
 
-Yes, that works for me
+        Yes, that works for me
 
-</a>
-
-
-<br><br>
+    </a>
 
 
-<a href="{% url 'adjust_meeting' %}" class="cta-button" onclick="logResponse('Adjust meeting','YES')">
+    <br><br>
 
-Maybe we can adjust the time or place
 
-</a>
+    <a href="{% url 'adjust_meeting' %}" class="cta-button" onclick="logResponse('Adjust meeting','YES')">
+
+        Maybe we can adjust the time or place
+
+    </a>
 
 </div>
 
