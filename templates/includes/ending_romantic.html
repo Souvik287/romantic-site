@@ -8,10 +8,10 @@
 
 <div class="ending-music-wrap">
 
-    <p class="ending-music-hint">A little something for you — tap when you’re ready ♡</p>
+    <p class="ending-music-hint">A little something for you — Tap Here↓♡</p>
 
     <button type="button" class="cta-button ending-play-btn" id="endingPlayBtn">
-        ▶ Play song 
+        ▶ Play
     </button>
 
     <audio id="endingMusic" loop playsinline preload="metadata" style="display:none;">
@@ -25,68 +25,68 @@
 
 <script>
 
-(function () {
+    (function () {
 
-    var START_SEC = 16;
+        var START_SEC = 16;
 
-    var btn = document.getElementById("endingPlayBtn");
+        var btn = document.getElementById("endingPlayBtn");
 
-    var el = document.getElementById("endingMusic");
+        var el = document.getElementById("endingMusic");
 
-    if (!btn || !el) {
+        if (!btn || !el) {
 
-        return;
+            return;
 
-    }
+        }
 
-    btn.addEventListener("click", function () {
+        btn.addEventListener("click", function () {
 
-        function seekThenPlay() {
+            function seekThenPlay() {
 
-            var dur = el.duration;
+                var dur = el.duration;
 
-            var t = START_SEC;
+                var t = START_SEC;
 
-            if (isFinite(dur) && dur > 0) {
+                if (isFinite(dur) && dur > 0) {
 
-                t = Math.min(START_SEC, Math.max(0, dur - 0.2));
+                    t = Math.min(START_SEC, Math.max(0, dur - 0.2));
+
+                }
+
+                try {
+
+                    el.currentTime = t;
+
+                } catch (e) { }
+
+                el.play().catch(function () { });
+
+                btn.textContent = "Playing…";
+
+                btn.disabled = true;
+
+                btn.style.opacity = "0.85";
 
             }
 
-            try {
-
-                el.currentTime = t;
-
-            } catch (e) {}
-
-            el.play().catch(function () {});
-
-            btn.textContent = "Playing…";
-
-            btn.disabled = true;
-
-            btn.style.opacity = "0.85";
-
-        }
-
-        if (el.readyState >= 1) {
-
-            seekThenPlay();
-
-        } else {
-
-            el.addEventListener("loadedmetadata", function once() {
-
-                el.removeEventListener("loadedmetadata", once);
+            if (el.readyState >= 1) {
 
                 seekThenPlay();
 
-            });
+            } else {
 
-        }
+                el.addEventListener("loadedmetadata", function once() {
 
-    });
+                    el.removeEventListener("loadedmetadata", once);
 
-})();
+                    seekThenPlay();
+
+                });
+
+            }
+
+        });
+
+    })();
 
 </script>
